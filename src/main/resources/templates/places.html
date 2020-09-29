@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>All</title>
+</head>
+<body>
+<div class="container">
+        <h2>All Places</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Place_id</th>
+            <th>Place</th>
+            <th>Amount</th>
+            <th>Vaccine_id</th>
+        </tr>
+        <tr th:each="placeone : ${placesList}">
+            <td th:text="${placeone.place_id}">Id</td>
+            <td th:text="${placeone.places}">Place</td>
+            <td th:text="${placeone.amount}">Amount</td>
+            <td th:text="${placeone.vaccine.vaccine_name}">Vaccine_id</td>
+            <td><a th:href="${'/places/editPlace/' + placeone.place_id}" class="btn btn-default">Edit</a></td>
+            <td><a th:href="${'/places/delete/' + placeone.place_id}" class="btn btn-danger">Delete</a></td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.appointment .php-email-form input, .appointment .php-email-form select {
+    height: 60px !important;
+    width: 800px;
+    margin: auto;
+}
+label{
+
+    font-size: 23px;
+    margin: 0px 155px;
+    margin-bottom: 12px;
+}
+section{
+    margin-top: 90px;
+}
+.appointment .php-email-form span{
+    margin: 0px 155px;
+    color:red !important;
+}
+#validate{
+    margin: 0px 155px;
+}
