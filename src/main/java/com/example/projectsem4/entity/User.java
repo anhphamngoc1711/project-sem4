@@ -16,12 +16,13 @@ public class User {
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
-//    @Column(name = "role")
-//    private String role;
+
     @Column(name = "enable")
     private boolean enabled;
 
@@ -35,6 +36,21 @@ public class User {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Bill> bills = new ArrayList<Bill>();
 
+    public User() {
+    }
+
+    public User(int id, String username, String password, boolean enabled, Set<Role> roles, List<Bill> bills) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+        this.bills = bills;
+    }
+
+    public <T> User(String username, String password, List<T> role_user) {
+
+    }
 
     public int getId() {
         return id;

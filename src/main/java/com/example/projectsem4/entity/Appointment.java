@@ -31,9 +31,11 @@ public class Appointment implements Source {
     private Date date_of_birth;
     private String address;
     private String time_zone;
-    private String injection_address;
     private int vaccine_id;
     private String gender;
+
+
+    private int place_id;
 
     @OneToMany(mappedBy = "appointment",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -43,6 +45,10 @@ public class Appointment implements Source {
     @JoinColumn(name = "vaccine_id", nullable = false,insertable = false, updatable = false)
     private Vaccine vaccine;
 
+    @ManyToOne
+    @JoinColumn(name = "place_id", nullable = false,insertable = false,updatable = false)
+    private Place place;
+
     @Override
     public void setSystemId(String systemId) {
 
@@ -51,22 +57,6 @@ public class Appointment implements Source {
     @Override
     public String getSystemId() {
         return null;
-    }
-
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "appointment_id=" + appointment_id +
-                ", name='" + name + '\'' +
-                ", phone=" + phone +
-                ", date=" + date +
-                ", date_of_birth=" + date_of_birth +
-                ", address='" + address + '\'' +
-                ", injection_address='" + injection_address + '\'' +
-                ", gender='" + gender + '\'' +
-                ", billAppointment=" + billAppointment +
-                ", vaccine=" + vaccine +
-                '}';
     }
 
     public int getAppointment_id() {
@@ -125,12 +115,20 @@ public class Appointment implements Source {
         this.time_zone = time_zone;
     }
 
-    public String getInjection_address() {
-        return injection_address;
+    public int getPlace_id() {
+        return place_id;
     }
 
-    public void setInjection_address(String injection_address) {
-        this.injection_address = injection_address;
+    public void setPlace_id(int place_id) {
+        this.place_id = place_id;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
     public int getVaccine_id() {
@@ -163,5 +161,23 @@ public class Appointment implements Source {
 
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointment_id=" + appointment_id +
+                ", name='" + name + '\'' +
+                ", phone=" + phone +
+                ", date=" + date +
+                ", date_of_birth=" + date_of_birth +
+                ", address='" + address + '\'' +
+                ", time_zone='" + time_zone + '\'' +
+                ", vaccine_id=" + vaccine_id +
+                ", gender='" + gender + '\'' +
+                ", billAppointment=" + billAppointment +
+                ", vaccine=" + vaccine.getPrice() +
+                '}';
     }
 }

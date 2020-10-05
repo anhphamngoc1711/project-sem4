@@ -1,8 +1,12 @@
 package com.example.projectsem4.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,6 +22,10 @@ public class Place {
     @ManyToOne
     @JoinColumn(name = "vaccine_id", nullable = false,insertable = false, updatable = false)
     private Vaccine vaccine;
+
+    @OneToMany(mappedBy = "place",cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Appointment> appointments = new ArrayList<Appointment>();
 
     public static void setId(int id) {
     }

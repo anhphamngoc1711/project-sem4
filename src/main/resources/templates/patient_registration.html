@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta charset="UTF-8" />
+  <title>Paypal Payment with Spring Boot </title>
 </head>
 <body>
-<p><a href="payment.html">Vui lòng thanh toán </a></p>
+<h1>Thanh toán thành công</h1>
+
+<form method="post" th:action="@{/patient_registration}" th:object="${bill}" ></form>
+
+   <span>Họ và tên: </span><span th:text="${appointment.name}"></span><br/>
+
+   <span>Giới tính: </span><span th:text="${appointment.gender}"></span><br/>
+
+   <span>Ngày sinh: </span><span th:text="${appointment.date_of_birth}"></span><br/>
+
+   <span>Giới tính: </span><span th:text="${appointment.gender}"></span><br/>
+
+   <span>Điện thoại: </span><span th:text="${appointment.phone}"></span><br/>
+
+   <span>Địa chỉ thường trú: </span><span th:text="${appointment.address}"></span><br/>
+
+   <span>Địa điểm tiêm: </span><span th:text="${appointment.injection_address}"></span><br/>
+
+   <span>Mũi tiêm: </span><span th:text="${appointment.vaccine_id}"></span><br/>
+
+   <span>Ngày tiêm: </span><span th:text="${appointment.date}"></span><br/>
+
+   <span>Giờ hẹn: </span><span th:text="${appointment.time_zone}"></span><br/>
+
+   <span>Bạn đã thanh toán: </span><span th:text="${appointment.vaccine.price}"></span><br/>
+
+   <a href="/success" >Sổ tiêm của bạn</a>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.example.projectsem4.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -21,7 +22,11 @@ public class Vaccine {
 
     private String vaccine_name;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date date_production;
+
+    private double price;
 
     @OneToMany(mappedBy = "vaccine",cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -69,6 +74,14 @@ public class Vaccine {
 
     public void setPlaces(List<Place> places) {
         this.places = places;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
 
