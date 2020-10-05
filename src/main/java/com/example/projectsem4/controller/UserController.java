@@ -25,14 +25,14 @@ public class UserController {
         return "fontend/login";
     }
 
-    @RequestMapping("/fontend/signup.html")
-    public String signup(User user) {
-        return "fontend/signup";
-    }
+//    @RequestMapping("/fontend/signup.html")
+//    public String signup(User user) {
+//        return "fontend/signup";
+//    }
 
-    @RequestMapping(value = "/fontend/signup.html", method = RequestMethod.POST)
-    public String save(User user) {
-        userRepository.save(user);
-        return "redirect:/index.html";
-    }
+//    @RequestMapping(value = "/fontend/signup.html", method = RequestMethod.POST)
+//    public String save(User user) {
+//        userRepository.save(user);
+//        return "index.html";
+//    }
 }

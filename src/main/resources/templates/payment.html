@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Paypal Payment with Spring Boot - ShareEverythings.com</title>
+    <title>Paypal Payment with Spring Boot</title>
 </head>
 <body>
 <h1>Xác nhận thông tin và thanh toán</h1>
 
 <form method="post" th:action="@{/pay}">
-    <input type="text" value="Nhập giá của vaccine" name="price" placeholder="Nhập giá của vaccine " />
+    <input type="hidden" name="paymentId" th:value="${appointment.appointment_id}">
+    <span>Họ và tên: </span><span th:text="${appointment.name}"></span><br/>
+
+    <span>Ngày sinh: </span><span th:text="${appointment.date_of_birth}"></span><br/>
+
+    <span>Giới tính: </span><span th:text="${appointment.gender}"></span><br/>
+
+    <span>Điện thoại: </span><span th:text="${appointment.phone}"></span><br/>
+
+    <span>Địa chỉ thường trú: </span><span th:text="${appointment.address}"></span><br/>
+
+    <span>Địa điểm tiêm: </span><span th:text="${appointment.injection_address}"></span><br/>
+
+    <span>Mũi tiêm: </span><span th:text="${appointment.vaccine_id}"></span><br/>
+
+    <span>Ngày tiêm: </span><span th:text="${appointment.date}"></span><br/>
+
+    <span>Giờ hẹn: </span><span th:text="${appointment.time_zone}"></span><br/>
+
+    <span>Giá tiền</span><input name="price" th:value="${appointment.vaccine.price}" >
+
     <button type="submit"> Payment with Paypal </button>
 </form>
 

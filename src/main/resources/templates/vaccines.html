@@ -11,11 +11,13 @@
             <th>Vaccine_id</th>
             <th>Vaccine_name</th>
             <th>Date_production</th>
+            <th>Price</th>
         </tr>
         <tr th:each="vaccineone : ${vaccinesList}">
             <td th:text="${vaccineone.vaccine_id}">Id</td>
             <td th:text="${vaccineone.vaccine_name}">Name</td>
             <td th:text="${vaccineone.date_production}">Amount</td>
+            <td th:text="${vaccineone.price}">Price</td>
 
             <td><a th:href="${'/vaccines/editVaccine/' + vaccineone.vaccine_id}" class="btn btn-default">Edit</a></td>
             <td><a th:href="${'/vaccines/delete/' + vaccineone.vaccine_id}" class="btn btn-danger">Delete</a></td>

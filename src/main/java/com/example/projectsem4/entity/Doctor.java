@@ -3,6 +3,7 @@ package com.example.projectsem4.entity;
 import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,6 +20,7 @@ public class Doctor implements Serializable {
 
     private String name;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_of_birth;
 
     private int phone;
@@ -27,7 +29,7 @@ public class Doctor implements Serializable {
 
     private String address;
 
-    private int gender;
+    private String gender;
 
     private String status;
 

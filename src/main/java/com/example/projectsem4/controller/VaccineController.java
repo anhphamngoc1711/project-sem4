@@ -1,8 +1,6 @@
 package com.example.projectsem4.controller;
 
-import com.example.projectsem4.entity.Place;
 import com.example.projectsem4.entity.Vaccine;
-import com.example.projectsem4.repository.PlaceRepository;
 import com.example.projectsem4.repository.VaccineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +32,7 @@ public class VaccineController {
     @RequestMapping(path = "/vaccines", method = RequestMethod.POST)
     public String saveVaccine(Vaccine vaccine) {
         vaccineRepository.save(vaccine);
-        return "/";
+        return "redirect:/vaccines";
     }
 
     @RequestMapping(path = "/vaccines", method = RequestMethod.GET)

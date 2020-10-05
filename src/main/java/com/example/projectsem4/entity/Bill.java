@@ -30,4 +30,8 @@ public class Bill implements Serializable {
     @ManyToOne
     @JoinColumn(name = "doctor_id", nullable = false, insertable = false, updatable = false)
     private Doctor doctor;
+
+//    @ManyToOne
+//    @JoinColumn(name = "vaccination_record", nullable = false,insertable = false, updatable = false)
+//    private Vaccination_record vaccination_record;
 }
