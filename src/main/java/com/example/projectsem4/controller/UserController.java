@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @Data
-@RequestMapping("/")
+
 public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping("/index.html")
-    public String index(User user) {
+//    @RequestMapping("/")
+//    public String index(){
+//        return "index";
+//    }
+
+    @RequestMapping("/")
+    public String index() {
         return "index";
     }
 

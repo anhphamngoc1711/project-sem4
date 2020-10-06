@@ -33,7 +33,7 @@ public class Doctor implements Serializable {
 
     private String status;
 
-    @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,orphanRemoval = true)
-    @Fetch(value = FetchMode.SUBSELECT)
-    private List<Bill> doctorbill = new ArrayList<Bill>();
+//    @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,orphanRemoval = true)
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private List<Bill> doctorbill = new ArrayList<Bill>();
 }
