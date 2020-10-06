@@ -3,8 +3,11 @@ package com.example.projectsem4.controller;
 import com.example.projectsem4.config.PaypalPaymentIntent;
 import com.example.projectsem4.config.PaypalPaymentMethod;
 import com.example.projectsem4.entity.Appointment;
+import com.example.projectsem4.entity.Bill;
 import com.example.projectsem4.entity.Place;
 import com.example.projectsem4.repository.AppointmentRepository;
+import com.example.projectsem4.repository.BillRepository;
+import com.example.projectsem4.repository.VaccineRepository;
 import com.example.projectsem4.service.PaypalService;
 import com.example.projectsem4.utils.Utils;
 import com.paypal.api.payments.Links;
@@ -15,16 +18,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class PaymentController {
+
+    @Autowired
+    private BillRepository billRepository;
 
     public int payid;
 
@@ -38,6 +42,9 @@ public class PaymentController {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private VaccineRepository vaccineRepository;
 
     @GetMapping("/payment/{id}")
     public String index(Model model, @PathVariable int id) {
@@ -86,6 +93,14 @@ public class PaymentController {
                 model.addAttribute("payment", payment);
                 Optional<Appointment> appointment = appointmentRepository.findById(this.payid);
                 model.addAttribute("appointment", appointment.get());
+                Bill bill = new Bill();
+                bill.setAppointment_id(appointment.get().getAppointment_id());
+                bill.setAddress(appointment.get().getAddress());
+                bill.setGender(appointment.get().getGender());
+                bill.setDate_of_birth(appointment.get().getDate_of_birth());
+                bill.setPrice((float) appointment.get().getVaccine().getPrice());
+                bill.setTime_zone(appointment.get().getTime_zone());
+                billRepository.save(bill);
                 return "patient_registration";
             }
         } catch (PayPalRESTException e) {

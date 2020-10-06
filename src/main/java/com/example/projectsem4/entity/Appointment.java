@@ -34,7 +34,6 @@ public class Appointment implements Source {
     private int vaccine_id;
     private String gender;
 
-
     private int place_id;
 
     @OneToMany(mappedBy = "appointment",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
@@ -59,9 +58,8 @@ public class Appointment implements Source {
         return null;
     }
 
-    public int getAppointment_id() {
-        return appointment_id;
-    }
+
+
 
     public void setAppointment_id(int appointment_id) {
         this.appointment_id = appointment_id;
