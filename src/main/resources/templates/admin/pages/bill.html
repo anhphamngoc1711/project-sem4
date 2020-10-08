@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Majestic Admin</title>
+    <title>Covid-19</title>
     <!-- plugins:css -->
     <link rel="stylesheet" th:href="@{/admincss/vendors/mdi/css/materialdesignicons.min.css}">
     <link rel="stylesheet" th:href="@{/admincss/vendors/base/vendor.bundle.base.css}">
@@ -13,7 +12,6 @@
     <!-- inject:css -->
     <link rel="stylesheet" th:href="@{/admincss/css/style.css}">
     <!-- endinject -->
-    <link rel="shortcut icon" th:href="@{/admincss/images/favicon.png}" />
 </head>
 
 <body>
@@ -166,7 +164,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="basic_elements.html">
+                    <a class="nav-link" href="doctor.html">
                         <i class="mdi mdi-view-headline menu-icon"></i>
                         <span class="menu-title">Dotors</span>
                     </a>
@@ -178,13 +176,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="basic-table.html">
+                    <a class="nav-link" href="appointments.html">
                         <i class="mdi mdi-grid-large menu-icon"></i>
                         <span class="menu-title">Appointment</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mdi.html">
+                    <a class="nav-link" href="bill.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Bill</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vaccines.html">
                         <i class="mdi mdi-emoticon menu-icon"></i>
                         <span class="menu-title">Vacxin</span>
                     </a>
@@ -203,8 +207,8 @@
                     </a>
                     <div class="collapse" id="auth">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="LoginSignup/login.html"> Login </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="LoginSignup/register.html"> Register </a></li>
+                            <li class="nav-item"> <a class="nav-link" th:href="@{/admincss/pages/samples/login.html}"> Login </a></li>
+                            <li class="nav-item"> <a class="nav-link" th:href="@{/admincss/pages/samples/register.html}"> Register </a></li>
                         </ul>
                     </div>
                 </li>
@@ -215,36 +219,61 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-                    <div class="col-12 grid-margin stretch-card">
+                    <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Vaccine add</h4>
-                                <form class="forms-sample" th:object="${vaccine}" action="/vaccines" method="post">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" th:field="*{vaccine_id}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label > Vaccine_Name</label>
-                                        <input type="text" class="form-control" th:field="*{vaccine_name}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label > Date_production</label>
-                                        <input type="date" class="form-control" th:field="*{date_production}" />
+                                <h4 class="card-title">Bill</h4>
+                                <div  >
+                                    <a type="buttom" href="addbill.html" style="background-color: blue;color: white; border: blue; margin:0px 400px 0px 0px"  class="btn btn-danger">Add</a>
 
-                                    </div>
+                                </div>
+
+                                <div class="table-responsive pt-3">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr >
+                                            <th>Id</th>
+                                            <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>Date of birth</th>
+                                            <th>Address</th>
+                                            <th>Vaccine</th>
+                                            <th>Date</th>
+                                            <th>Time_zone</th>
+                                            <th>create_at</th>
+                                            <th>update_at</th>
+                                            <th>delete_at</th>
 
 
 
-                                    <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                    <button class="btn btn-light">Cancel</button>
-                                </form>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="billone : ${billList}">
+                                            <td th:text="${billone.bill_id}">Id</td>
+                                            <td th:text="${billone.appointment}">Name</td>
+                                            <td th:text="${billone.gender}">Gender</td>
+                                            <td th:text="${billone.date_of_birth}">Date_of_birth</td>
+                                            <td th:text="${billone.address}">Address</td>
+                                            <td th:text="${billone.vaccine_id}">Vaccine_id</td>
+                                            <td th:text="${billone.date}">date</td>
+                                            <td th:text="${billone.time_zone}">time</td>
+                                            <td th:text="${billone.create_at}">create_at</td>
+                                            <td th:text="${billone.update_at}">update_at</td>
+                                            <td th:text="${billone.delete_at}">delete_at</td>
+
+
+                                            <td>
+                                                <a th:href="${'/admin/pages/editAppoitment/' + appointmentone.appointment_id}" class="btn btn-dark">Edit</a>
+                                                <a th:href="${'/appointments/delete/' + appointmentone.appointment_id}" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-
-
 
 
                 </div>
@@ -267,13 +296,15 @@
 <!-- plugins:js -->
 <script th:src="@{/admincss/vendors/base/vendor.bundle.base.js}"></script>
 <!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
 <!-- inject:js -->
 <script th:src="@{/admincss/js/off-canvas.js}"></script>
 <script th:src="@{/admincss/js/hoverable-collapse.js}"></script>
 <script th:src="@{/admincss/js/template.js}"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script th:src="@{/admincss/js/file-upload.js}"></script>
 <!-- End custom js for this page-->
 </body>
+
 </html>

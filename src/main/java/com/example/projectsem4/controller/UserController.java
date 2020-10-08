@@ -25,4 +25,17 @@ public class UserController {
         return "fontend/login";
     }
 
+<<<<<<< HEAD
+=======
+    @RequestMapping("/index")
+    public String index(User user) {
+        return "index";
+    }
+
+//    @RequestMapping(value = "/fontend/signup.html", method = RequestMethod.POST)
+//    public String save(User user) {
+//        userRepository.save(user);
+//        return "index.html";
+//    }
+>>>>>>> view
 }

@@ -26,8 +26,9 @@ public class Bill implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_of_birth;
-    private String address;
+    private Date date;
     private String time_zone;
+    private String address;
     private int vaccine_id;
     private String gender;
     private int phone;

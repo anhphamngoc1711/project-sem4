@@ -13,24 +13,28 @@ public class AdminController {
 
     public AdminController() {
     }
+    @GetMapping({"/admin/login"})
+    public String login() {
+        return "admin/pages/LoginSignup/login";
+    }
 
     @GetMapping({"/admin/index.html"})
     public String index() {
         return "admin/index";
     }
 
-    @RequestMapping({"/admin/pages/basic_elements.html"})
-    public String doctor() {
-        return "admin/pages/basic_elements";
-    }
+//    @RequestMapping({"/admin/pages/doctor.html"})
+//    public String doctor() {
+//        return "admin/pages/doctor";
+//    }
 
     @RequestMapping({"/admin/pages/chartjs.html"})
     public String user() {
         return "admin/pages/chartjs";
     }
 
-    @RequestMapping({"/admin/pages/basic-table.html"})
-    public String appointment() {
-        return "admin/pages/basic-table";
-    }
+//    @RequestMapping({"/admin/pages/basic-table.html"})
+//    public String appointment() {
+//        return "admin/pages/basic-table";
+//    }
 }

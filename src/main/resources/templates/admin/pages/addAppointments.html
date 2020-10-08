@@ -166,7 +166,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="basic_elements.html">
+                    <a class="nav-link" href="doctor.html">
                         <i class="mdi mdi-view-headline menu-icon"></i>
                         <span class="menu-title">Dotors</span>
                     </a>
@@ -178,13 +178,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="basic-table.html">
+                    <a class="nav-link" href="appointments.html">
                         <i class="mdi mdi-grid-large menu-icon"></i>
                         <span class="menu-title">Appointment</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="mdi.html">
+                    <a class="nav-link" href="vaccines.html">
                         <i class="mdi mdi-emoticon menu-icon"></i>
                         <span class="menu-title">Vacxin</span>
                     </a>
@@ -218,34 +218,161 @@
                     <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Vaccine add</h4>
-                                <form class="forms-sample" th:object="${vaccine}" action="/vaccines" method="post">
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" th:field="*{vaccine_id}" />
+                                <h4 class="card-title">Appointments</h4>
+
+                                <form method="post" role="form" th:action="@{/admin/pages/addAppointments}" th:object="${appointment}" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Họ và tên:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="name" class="form-control" th:value="*{name}" placeholder="Họ và tên người được tiêm(*)" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                                            <div class="validate"></div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label > Vaccine_Name</label>
-                                        <input type="text" class="form-control" th:field="*{vaccine_name}" />
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Ngày sinh:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" name="date_of_birth" th:value="*{date_of_birth}" placeholder="Nhập ngày sinh">
+                                            <div class="validate"></div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label > Date_production</label>
-                                        <input type="date" class="form-control" th:field="*{date_production}" />
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Giới tính:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select type="text" name="gender"  th:value="*{gender}" class="form-control" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên.">
+                                                <option value="">Giới tính</option>
+                                                <option>Nam</option>
+                                                <option>Nữ</option>
+                                            </select>
+                                            <div class="validate"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Điện thoại:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="phone" th:value="*{phone}" placeholder="Số điện thoại của bạn" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên." >
+                                            <div class="validate"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Địa chỉ thường trú:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="address" class="form-control datepicker" th:value="*{address}" placeholder="Nhập địa chỉ">
+                                            <div class="validate"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel">Địa điểm tiêm:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select  name="place_id" class="form-control" th:value="*{place_id}" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên.">
+                                                <option th:each="place : ${placesList}" th:value="${place.place_id}" th:text="${place.places}"></option>
+                                            </select>
+                                            <div class="validate"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Mũi tiêm:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select name="vaccine_id" text="number" th:value="*{vaccine_id}"  class="form-control" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên.">
+                                                <option th:each="vaccine : ${vaccinesList}" th:value="${vaccine.vaccine_id}" th:text="${vaccine.vaccine_name}"></option>
+                                            </select>
+                                            <div class="validate"></div>
+                                        </div>
 
                                     </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Ngày tiêm:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="date" name="date"   class="form-control" th:value="*{date}"   data-rule="minlen:4"  >
+                                            <div class="validate"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label class="formlabel" >Giờ hẹn:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="time_zone" class="form-control" th:value="*{time_zone}" >
+                                            <div class="validate"></div>
+                                        </div>
+                                    </div>
 
-
-
-                                    <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                    <button class="btn btn-light">Cancel</button>
+                                    <div class="text-center"><button type="submit">Đăng kí thông tin tiêm chủng</button></div>
                                 </form>
+
+<!--                                <form class="forms-sample" th:object="${appointment}" action="/appointments" method="post">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label >Appointment_id</label>-->
+<!--                                        <input type="hidden" th:field="*{appointment_id}" class="form-control"  placeholder="appointment_id">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Name</label>-->
+<!--                                        <input type="text" th:field="*{name}" class="form-control" placeholder="Name">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Phone</label>-->
+<!--                                        <input type="text" th:field="*{phone}" class="form-control" placeholder="phone">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Date of birth</label>-->
+<!--                                        <input type="date"th:field="*{date_of_birth}" class="form-control"  placeholder="Date of birth">-->
+<!--                                    </div>-->
+
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Gender</label>-->
+<!--                                        <input type="text" class="form-control" th:field="*{gender}"  placeholder="gender">-->
+
+<!--                                    </div>-->
+
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Address</label>-->
+<!--                                        <input type="text" th:field="*{address}" class="form-control"  placeholder="Address">-->
+<!--                                    </div>-->
+
+<!--                                        <div class="form-group">-->
+<!--                                            <label > Place</label>-->
+<!--                                            <select  name="place_id" class="form-control" th:value="*{place_id}" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên.">-->
+<!--                                                <option th:each="place : ${placesList}" th:value="${place.place_id}" th:text="${place.places}"></option>-->
+<!--                                            </select>-->
+<!--                                            <div class="validate"></div>-->
+<!--                                        </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Vacxin</label>-->
+<!--                                        <input type="text" th:field="*{vaccine_id}" class="form-control"  placeholder="Vacxin">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Date</label>-->
+<!--                                        <input type="date"th:field="*{date}" class="form-control"  placeholder="Date">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label > Time_zone</label>-->
+<!--                                        <input type="text" th:field="*{time_zone}" class="form-control"  placeholder="Time_zone">-->
+<!--                                    </div>-->
+
+
+
+<!--                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>-->
+<!--                                    <button class="btn btn-light">Cancel</button>-->
+<!--                                </form>-->
                             </div>
                         </div>
                     </div>
-
-
-
-
-
 
                 </div>
             </div>
@@ -277,3 +404,13 @@
 <!-- End custom js for this page-->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

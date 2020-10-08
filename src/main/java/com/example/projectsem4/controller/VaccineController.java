@@ -25,37 +25,25 @@ public class VaccineController {
         this.vaccineRepository = vaccineRepository;
     }
 
-    @RequestMapping(
-            path = {"/admin/pages/addVaccine.html"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(path = {"/admin/pages/addVaccine.html"}, method = {RequestMethod.GET})
     public String createVaccine(Model model) {
         model.addAttribute("vaccine", new Vaccine());
         return "/admin/pages/addVaccine";
     }
 
-    @RequestMapping(
-            path = {"/vaccines"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(path = {"/vaccines"}, method = {RequestMethod.POST})
     public String saveVaccine(Vaccine vaccine) {
         this.vaccineRepository.save(vaccine);
         return "redirect:/admin/pages/vaccines.html";
     }
 
-    @RequestMapping(
-            path = {"/admin/pages/vaccines.html"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(path = {"/admin/pages/vaccines.html"}, method = {RequestMethod.GET})
     public String getAllVaccines(Model model) {
         model.addAttribute("vaccinesList", this.vaccineRepository.findAll());
         return "admin/pages/vaccines";
     }
 
-    @RequestMapping(
-            path = {"/admin/pages/editVaccine/{id}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(path = {"/admin/pages/editVaccine/{id}"}, method = {RequestMethod.GET})
     public String editVaccine(Model model, @PathVariable int id) {
         Optional<Vaccine> vaccine = this.vaccineRepository.findById(id);
         model.addAttribute("vaccine", vaccine);
@@ -73,10 +61,7 @@ public class VaccineController {
         }
     }
 
-    @RequestMapping(
-            value = {"/vaccines/delete/{id}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"/vaccines/delete/{id}"}, method = {RequestMethod.GET})
     public String deleteVaccine(@PathVariable(name = "id") int id) {
         Optional<Vaccine> vaccine = this.vaccineRepository.findById(id);
         vaccine.ifPresent((value) -> {
