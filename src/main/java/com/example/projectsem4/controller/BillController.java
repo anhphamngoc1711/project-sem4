@@ -23,7 +23,11 @@ public class BillController {
     @Autowired
     private VaccineRepository vaccineRepository;
 
-
+    @RequestMapping(path = {"/admin/pages/bill.html"}, method = {RequestMethod.GET})
+    public String getAllbill(Model model) {
+        model.addAttribute("billList", billRepository.findAll());
+        return "admin/pages/bill";
+    }
     @RequestMapping(path = "/patient_registration", method = RequestMethod.GET)
     public String createBill(Model model) {
         model.addAttribute("bill", new Bill());

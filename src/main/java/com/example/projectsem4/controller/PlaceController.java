@@ -49,10 +49,7 @@ public class PlaceController {
         return "admin/pages/editPlace";
     }
 
-    @RequestMapping(
-            value = {"/places/update"},
-            method = {RequestMethod.POST}
-    )
+    @RequestMapping(value = {"/places/update"}, method = {RequestMethod.POST})
     public String updatePlace(Place place) {
         Optional<Place> place1 = this.placeRepository.findById(place.getPlace_id());
         if (place1.isPresent()) {
@@ -63,10 +60,7 @@ public class PlaceController {
         }
     }
 
-    @RequestMapping(
-            value = {"/admin/pages/Delete/{id}"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"/place/Delete/{id}"}, method = {RequestMethod.GET})
     public String deletePlace(@PathVariable(name = "id") int id) {
         Optional<Place> place = this.placeRepository.findById(id);
         place.ifPresent((value) -> {

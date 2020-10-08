@@ -30,48 +30,21 @@ public class AppointmentController {
     @Autowired
     PlaceRepository placeRepository;
 
-    @GetMapping("/fontend/registration.html")
-    public String registration(Model model) {
+
+//    @GetMapping("/fontend/registration.html")
+//    public String registration(Model model) {
+//        model.addAttribute("appointment", new Appointment());
+//        model.addAttribute("vaccinesList", vaccineRepository.findAll());
+//        model.addAttribute("placesList", placeRepository.findAll());
+//        return "/fontend/registration";
+//    }
+    @GetMapping("/admin/pages/addAppointments")
+    public String addAppointment(Model model) {
         model.addAttribute("appointment", new Appointment());
         model.addAttribute("vaccinesList", vaccineRepository.findAll());
         model.addAttribute("placesList", placeRepository.findAll());
-        return "/fontend/registration";
+        return "/admin/pages/addAppointments";
     }
-    @RequestMapping(path = "/appointments", method = RequestMethod.GET)
-    public String getAllAppointment(Model model) {
-        model.addAttribute("appointmentsList", appointmentRepository.findAll());
-        return "appointments";
-    }
-    @RequestMapping(path = "/appointments/edit/{id}", method = RequestMethod.GET)
-    public String editAppointment(Model model, @PathVariable int id) {
-        Optional<Appointment> appointment = appointmentRepository.findById(id);
-        model.addAttribute("appointment", appointment);
-        return "editAppointment";
-    }
-
-
-    @PostMapping("/appointments/update")
-    String updateAppointment( Appointment appointment) {
-        Optional<Appointment> appointment1 = appointmentRepository.findById(appointment.getAppointment_id());
-        if (appointment1.isPresent()){
-
-            appointmentRepository.save(appointment);
-            return "redirect:/appointments";
-        }
-        else {
-            return "/";
-        }
-    }
-
-
-    @RequestMapping(value = "/appointments/delete/{id}", method = RequestMethod.GET)
-    public  String deleteAppointment(@PathVariable(name = "id") int id){
-        Optional<Appointment> appointment = appointmentRepository.findById(id);
-        appointment.ifPresent(value -> appointmentRepository.deleteAppointment(value.getAppointment_id()));
-        return "redirect:/appointments";
-    }
-
-
     @PostMapping("/fontend/registration")
     public String registration( @ModelAttribute Appointment appointment, Model model)
     {
@@ -79,6 +52,57 @@ public class AppointmentController {
         appointmentService.add(appointment);
         return "redirect:/payment/" + appointment.getAppointment_id();
     }
+
+
+//    @RequestMapping({"/admin/pages/appointments.html"})
+//    public String appointment() {
+//        return "admin/pages/appointments";
+//    }
+
+    @RequestMapping(path = "/admin/pages/appointments.html", method = RequestMethod.GET)
+    public String getAllAppointment(Model model) {
+        model.addAttribute("appointmentsList", appointmentRepository.findAll());
+        return "/admin/pages/appointments";
+    }
+
+    @RequestMapping(path = {"/appointments"}, method = {RequestMethod.POST})
+    public String saveAppointment(Appointment appointment) {
+ appointmentRepository.save(appointment);
+        return "redirect:/admin/pages/appointments.html";
+    }
+    @PostMapping("/appointments/update")
+    String updateAppointment( Appointment appointment) {
+        Optional<Appointment> appointment1 = appointmentRepository.findById(appointment.getAppointment_id());
+        if (appointment1.isPresent()){
+
+            appointmentRepository.save(appointment);
+            return "redirect:/admin/pages/appointments.html";
+        }
+        else {
+            return "/";
+        }
+    }
+    @RequestMapping(path = {"/admin/pages/editAppointment/{id}"}, method = {RequestMethod.GET})
+    public String editAppointments(Model model, @PathVariable int id) {
+        Optional<Appointment> appointment = this.appointmentRepository.findById(id);
+        model.addAttribute("apointments", appointment);
+        return "admin/pages/editAppointments";
+    }
+
+
+    @RequestMapping(value = "/appointments/delete/{id}", method = RequestMethod.GET)
+    public  String deleteAppointment(@PathVariable(name = "id") int id){
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
+        appointment.ifPresent(value -> appointmentRepository.deleteAppointment(value.getAppointment_id()));
+        return "redirect:/admin/pages/appointments.html";
+    }
+
+    @RequestMapping(path = {"/admin/pages/addAppointments.html"}, method = {RequestMethod.GET})
+    public String createAppointment(Model model) {
+        model.addAttribute("appointment", new Appointment());
+        return "/admin/pages/addAppointments";
+    }
+
 
 
 }

@@ -22,8 +22,8 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex justify-content-center">
             <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                <a class="navbar-brand brand-logo" href="../../index.html"><img th:src="@{/admincss/images/logo.png}" alt="logo"/></a>
-                <a class="navbar-brand brand-logo-mini" href="../../index.html"><img th:src="@{/admincss/images/logo-mini.svg}" alt="logo"/></a>
+                <a class="navbar-brand brand-logo" href="/admin/index.html"><img th:src="@{/admincss/images/logo.png}" alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href="/admin/index.html"><img th:src="@{/admincss/images/logo-mini.svg}" alt="logo"/></a>
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="mdi mdi-sort-variant"></span>
                 </button>
@@ -163,10 +163,10 @@
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-
+`
 
                 <li class="nav-item">
-                    <a class="nav-link" href="basic_elements.html">
+                    <a class="nav-link" href="doctor.html">
                         <i class="mdi mdi-view-headline menu-icon"></i>
                         <span class="menu-title">Dotors</span>
                     </a>
@@ -178,7 +178,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="basic-table.html">
+                    <a class="nav-link" href="appointments.html">
                         <i class="mdi mdi-grid-large menu-icon"></i>
                         <span class="menu-title">Appointment</span>
                     </a>
@@ -203,8 +203,8 @@
                     </a>
                     <div class="collapse" id="auth">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> <a class="nav-link" href="samples/login.html"> Login </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="samples/register.html"> Register </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="LoginSignup/login.html"> Login </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="LoginSignup/register.html"> Register </a></li>
                         </ul>
                     </div>
                 </li>
@@ -219,7 +219,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Place</h4>
-                                <div style="width: 100%;text-align: right" >
+                                <div >
                                     <a type="buttom" href="addPlace.html" style="background-color: blue;color: white; border: blue; margin:0px 400px 0px 0px"  class="btn btn-danger">Add</a>
 
                                 </div>
@@ -237,15 +237,14 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr  th:each="placeone : ${placesList}">
+                                            <tr  th:each="placeone : ${placesList}">
                                             <td th:text="${placeone.place_id}">Place_Id</td>
                                             <td th:text="${placeone.places}">Place</td>
                                             <td th:text="${placeone.amount}">Amount</td>
                                             <td th:text="${placeone.vaccine.vaccine_id}">Vaccine_id</td>
                                             <td>
-
                                                 <a th:href="${'/admin/pages/editPlace/' + placeone.place_id}" class="btn btn-dark ">Edit</a>
-                                                <a th:href="${'/admin/pages/Delete/' + placeone.place_id}"  class="btn btn-danger">Delete</a>
+                                                <a th:href="${'/place/Delete/' + placeone.place_id}"  class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                         </tbody>
