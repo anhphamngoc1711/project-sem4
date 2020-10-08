@@ -36,6 +36,10 @@ public class Vaccine {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Place> places = new ArrayList<Place>();
 
+    @OneToMany(mappedBy = "vaccine", cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
+    @Fetch(value =  FetchMode.SUBSELECT)
+    private List<Bill> bills = new ArrayList<Bill>();
+
     public int getVaccine_id() {
         return vaccine_id;
     }

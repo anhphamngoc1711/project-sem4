@@ -7,15 +7,13 @@
 <body>
 <h1>Thanh toán thành công</h1>
 
-<form method="post" th:action="@{/patient_registration}" th:object="${bill}" ></form>
+<!--<form method="post" th:action="@{/patient_registration}" th:object="${bill}" ></form>-->
 
    <span>Họ và tên: </span><span th:text="${appointment.name}"></span><br/>
 
    <span>Giới tính: </span><span th:text="${appointment.gender}"></span><br/>
 
    <span>Ngày sinh: </span><span th:text="${appointment.date_of_birth}"></span><br/>
-
-   <span>Giới tính: </span><span th:text="${appointment.gender}"></span><br/>
 
    <span>Điện thoại: </span><span th:text="${appointment.phone}"></span><br/>
 

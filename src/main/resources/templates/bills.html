@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h2>All Bills</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Bill_id</th>
+            <th>address</th>
+            <th>date_of_birth</th>
+            <th>gender</th>
+            <th>price</th>
+            <th>vaccine_id</th>
+            <th>date</th>
+            <th>phone</th>
+        </tr>
+        <tr th:each="billone : ${billsList}">
+            <td th:text="${billone.address}">add</td>
+            <td th:text="${billone.date_of_birth}">date_of_birth</td>
+            <td th:text="${billone.gender}">gender</td>
+            <td th:text="${billone.price}">price</td>
+            <td th:text="${billone.vaccine_id}">vaccine_id</td>
+            <td th:text="${billone.date}">date</td>
+            <td th:text="${billone.phone}">phone</td>
+            <td>
+                <select name="doctorId">
+
+            </select>
+            </td>
+
+
+            <!--            <td><a th:href="${'/doctors/editDoctor/' + doctorone.doctor_id}" class="btn btn-default">Edit</a></td>-->
+<!--            <td><a th:href="${'/doctors/delete/' + doctorone.doctor_id}" class="btn btn-danger">Delete</a></td>-->
+        </tr>
+    </table>
+</div>
+</body>
+</html>

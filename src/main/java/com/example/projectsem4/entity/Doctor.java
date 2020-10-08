@@ -6,6 +6,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.print.Doc;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +34,4 @@ public class Doctor implements Serializable {
 
     private String status;
 
-//    @OneToMany(mappedBy = "doctor",cascade = CascadeType.ALL,orphanRemoval = true)
-//    @Fetch(value = FetchMode.SUBSELECT)
-//    private List<Bill> doctorbill = new ArrayList<Bill>();
 }

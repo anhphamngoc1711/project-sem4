@@ -25,7 +25,7 @@
             <td th:text="${doctorone.gender}">Address</td>
             <td th:text="${doctorone.gender}">Gender</td>
             <td><a th:href="${'/doctors/editDoctor/' + doctorone.doctor_id}" class="btn btn-default">Edit</a></td>
-            <td><a th:href="${'/doctors/delete/' + doctorone.place_id}" class="btn btn-danger">Delete</a></td>
+            <td><a th:href="${'/doctors/delete/' + doctorone.doctor_id}" class="btn btn-danger">Delete</a></td>
         </tr>
     </table>
 </div>

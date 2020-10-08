@@ -15,11 +15,6 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-//    @RequestMapping("/")
-//    public String index(){
-//        return "index";
-//    }
-
     @RequestMapping("/")
     public String index() {
         return "index";
@@ -30,14 +25,4 @@ public class UserController {
         return "fontend/login";
     }
 
-//    @RequestMapping("/fontend/signup.html")
-//    public String signup(User user) {
-//        return "fontend/signup";
-//    }
-
-//    @RequestMapping(value = "/fontend/signup.html", method = RequestMethod.POST)
-//    public String save(User user) {
-//        userRepository.save(user);
-//        return "index.html";
-//    }
 }

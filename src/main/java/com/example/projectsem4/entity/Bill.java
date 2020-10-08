@@ -1,21 +1,24 @@
 package com.example.projectsem4.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
 public class Bill implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int bill_id;
     private float price;
-    private int user_id;
+//    private int user_id;
     private int appointment_id;
     private Date create_at;
     private Date update_at;
@@ -27,18 +30,28 @@ public class Bill implements Serializable {
     private String time_zone;
     private int vaccine_id;
     private String gender;
+    private int phone;
+    private Date date;
+    private boolean is_confirmed = false;
+    @Column(nullable = true)
+    private int doctorId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false,insertable = false, updatable = false)
-    private User user;
+
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", nullable = false,insertable = false, updatable = false)
+//    private User user;
 
     @ManyToOne
     @JoinColumn(name = "appointment_id", nullable = false,insertable = false, updatable = false)
     private Appointment appointment;
 
-//    @ManyToOne
-//    @JoinColumn(name = "doctor_id", nullable = false, insertable = false, updatable = false)
-//    private Doctor doctor;
+    @ManyToOne
+    @JoinColumn(name = "vaccine_id", nullable = false,insertable = false,updatable = false)
+    private Vaccine vaccine;
+
+    @ManyToOne
+    @JoinColumn(name = "doctorId", nullable = false,insertable = false,updatable = false)
+    private Doctor doctor;
 
     public int getBill_id() {
         return bill_id;
@@ -56,13 +69,13 @@ public class Bill implements Serializable {
         this.price = price;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
+//    public int getUser_id() {
+//        return user_id;
+//    }
+//
+//    public void setUser_id(int user_id) {
+//        this.user_id = user_id;
+//    }
 
     public Date getCreate_at() {
         return create_at;
@@ -128,13 +141,13 @@ public class Bill implements Serializable {
         this.gender = gender;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Appointment getAppointment() {
         return appointment;

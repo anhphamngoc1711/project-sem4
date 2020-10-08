@@ -32,9 +32,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
-    @Fetch(value = FetchMode.SUBSELECT)
-    private List<Bill> bills = new ArrayList<Bill>();
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private List<Bill> bills = new ArrayList<Bill>();
 
     public User() {
     }
@@ -45,7 +45,7 @@ public class User {
         this.password = password;
         this.enabled = enabled;
         this.roles = roles;
-        this.bills = bills;
+//        this.bills = bills;
     }
 
     public <T> User(String username, String password, List<T> role_user) {
@@ -92,13 +92,13 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Bill> getBills() {
-        return bills;
-    }
-
-    public void setBills(List<Bill> bills) {
-        this.bills = bills;
-    }
+//    public List<Bill> getBills() {
+//        return bills;
+//    }
+//
+//    public void setBills(List<Bill> bills) {
+//        this.bills = bills;
+//    }
 
 
 }
