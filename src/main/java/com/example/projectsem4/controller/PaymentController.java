@@ -48,7 +48,7 @@ public class PaymentController {
 
     @GetMapping("/payment/{id}")
     public String index(Model model, @PathVariable int id) {
-            Optional<Appointment> appointment = appointmentRepository.findById(id);
+        Optional<Appointment> appointment = appointmentRepository.findById(id);
         model.addAttribute("appointment", appointment.get());
         return "payment";
     }
@@ -100,6 +100,9 @@ public class PaymentController {
                 bill.setDate_of_birth(appointment.get().getDate_of_birth());
                 bill.setPrice((float) appointment.get().getVaccine().getPrice());
                 bill.setTime_zone(appointment.get().getTime_zone());
+                bill.setPhone(appointment.get().getPhone());
+                bill.setDate(appointment.get().getDate());
+                bill.setVaccine_id(appointment.get().getVaccine_id());
                 billRepository.save(bill);
                 return "patient_registration";
             }

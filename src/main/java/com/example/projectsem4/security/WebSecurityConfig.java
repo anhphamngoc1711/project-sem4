@@ -43,7 +43,7 @@
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests()
-//                .antMatchers("/","/place/add","/fontend/login.html")
+//                .antMatchers()
 //                .permitAll()
 //                .anyRequest().authenticated()
 //                .and()
@@ -52,5 +52,4 @@
 //                .logout().permitAll()
 //                ;
 //    }
-//
 //}
