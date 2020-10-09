@@ -24,7 +24,7 @@ public class PlaceController {
         this.placeRepository = placeRepository;
     }
 
-    @RequestMapping(path = {"/admin/pages/addPlace.html"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/admin/pages/addPlace"}, method = {RequestMethod.GET})
     public String createPlace(Model model) {
         model.addAttribute("place", new Place());
         return "/admin/pages/addPlace";
@@ -33,10 +33,10 @@ public class PlaceController {
     @RequestMapping(path = {"/place"}, method = {RequestMethod.POST})
     public String savePlace(Place place) {
         placeRepository.save(place);
-        return "redirect:/admin/pages/place.html";
+        return "redirect:/admin/pages/place";
     }
 
-    @RequestMapping(path = {"/admin/pages/place.html"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/admin/pages/place"}, method = {RequestMethod.GET})
     public String getAllPlaces(Model model) {
         model.addAttribute("placesList", this.placeRepository.findAll());
         return "admin/pages/place";

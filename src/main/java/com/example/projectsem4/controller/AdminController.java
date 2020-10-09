@@ -18,7 +18,7 @@ public class AdminController {
         return "admin/pages/LoginSignup/login";
     }
 
-    @GetMapping({"/admin/index.html"})
+    @GetMapping({"/admin/index"})
     public String index() {
         return "admin/index";
     }
@@ -28,7 +28,7 @@ public class AdminController {
 //        return "admin/pages/doctor";
 //    }
 
-    @RequestMapping({"/admin/pages/chartjs.html"})
+    @RequestMapping({"/admin/pages/chartjs"})
     public String user() {
         return "admin/pages/chartjs";
     }

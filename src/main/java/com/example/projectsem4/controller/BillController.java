@@ -1,17 +1,15 @@
 package com.example.projectsem4.controller;
 
+import com.example.projectsem4.entity.Appointment;
 import com.example.projectsem4.entity.Bill;
-import com.example.projectsem4.entity.Doctor;
 import com.example.projectsem4.entity.User;
 import com.example.projectsem4.repository.AppointmentRepository;
 import com.example.projectsem4.repository.BillRepository;
-import com.example.projectsem4.repository.DoctorRepository;
 import com.example.projectsem4.repository.VaccineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,11 +24,10 @@ public class BillController {
 
     @Autowired
     private VaccineRepository vaccineRepository;
-    @Autowired
-    private DoctorRepository doctorRepository;
 
 
-    @RequestMapping(path = {"/admin/pages/bill.html"}, method = {RequestMethod.GET})
+
+    @RequestMapping(path = {"/admin/pages/bill"}, method = {RequestMethod.GET})
     public String getAllbill(Model model) {
         model.addAttribute("billList", billRepository.findAll());
         return "admin/pages/bill";
@@ -38,15 +35,12 @@ public class BillController {
     @RequestMapping(path = "/patient_registration", method = RequestMethod.GET)
     public String createBill(Model model) {
         model.addAttribute("bill", new Bill());
-        List<Doctor> doctors = doctorRepository.findAll();
-
-        return "patient_registration";
+        return "patient_registration" ;
     }
 
     @RequestMapping(path = "/patient_registration", method = RequestMethod.POST)
     public String saveBill(Bill bill) {
         billRepository.save(bill);
-        return "/";
+        return "/" ;
     }
-
 }

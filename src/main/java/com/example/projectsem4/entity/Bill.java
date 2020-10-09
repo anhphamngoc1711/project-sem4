@@ -20,6 +20,7 @@ public class Bill implements Serializable {
     private float price;
 //    private int user_id;
     private int appointment_id;
+
     private Date create_at;
     private Date update_at;
     private Date delete_at;
@@ -32,15 +33,8 @@ public class Bill implements Serializable {
     private int vaccine_id;
     private String gender;
     private int phone;
-    private Date date;
-    private boolean is_confirmed = false;
-    @Column(nullable = true)
-    private int doctorId;
-
-
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", nullable = false,insertable = false, updatable = false)
-//    private User user;
+    private int status;
+    
 
     @ManyToOne
     @JoinColumn(name = "appointment_id", nullable = false,insertable = false, updatable = false)
@@ -50,9 +44,6 @@ public class Bill implements Serializable {
     @JoinColumn(name = "vaccine_id", nullable = false,insertable = false,updatable = false)
     private Vaccine vaccine;
 
-    @ManyToOne
-    @JoinColumn(name = "doctorId", nullable = false,insertable = false,updatable = false)
-    private Doctor doctor;
 
     public int getBill_id() {
         return bill_id;

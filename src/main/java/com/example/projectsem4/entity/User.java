@@ -24,7 +24,26 @@ public class User {
     private String password;
 
     @Column(name = "enable")
-    private boolean enabled;
+    public boolean enabled;
+
+    @Column(name = "vaccinated")
+    public int vaccinated;
+
+    public int getVaccinated() {
+        return vaccinated;
+    }
+
+    public void setVaccinated(int vaccinated) {
+        this.vaccinated = vaccinated;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -32,9 +51,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
-//    @Fetch(value = FetchMode.SUBSELECT)
-//    private List<Bill> bills = new ArrayList<Bill>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER, orphanRemoval = true)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Appointment> appointments = new ArrayList<Appointment>();
 
     public User() {
     }

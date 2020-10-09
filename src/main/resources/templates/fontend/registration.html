@@ -72,19 +72,19 @@
             <i class="icofont-clock-time"></i> Monday - Saturday, 8AM to 10PM
         </div>
         <div class="d-flex align-items-center">
-            <a href="login.html" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng kí</span> </a>
+            <a href="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng kí</span> </a>
         </div>
     </div>
 </div>
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
-        <a href="../index.html" class="logo mr-auto"><img th:src="@{/assets/img/logo.png}" alt=""></a>
+        <a href="/index" class="logo mr-auto"><img th:src="@{/assets/img/logo.png}" alt=""></a>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="logo mr-auto"><a href="index.html">Medicio</a></h1> -->
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="../index.html">Trang chủ</a></li>
+                <li class="active"><a href="/index">Trang chủ</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#departments">Departments</a></li>
@@ -122,13 +122,14 @@
             <p>Việc đăng ký thông tin tiêm chủng nhằm giúp Quý Khách tiết kiệm thời gian khi làm thủ tục tại quầy lễ tân của Trung Tâm, không mang ý nghĩa đặt trước giữ mũi vắc xin.</p>
         </div>
 
-        <form method="post" role="form" th:action="@{/fontend/registration}" th:object="${appointment}" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+        <form method="post" role="form" th:action="@{/appointments/save}" th:object="${appointment}" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
 
             <div class="form-row">
                 <div class="col-md-3">
                     <label class="formlabel" >Họ và tên:</label>
                 </div>
                 <div class="col-md-9">
+                    <input type="hidden" name="user_id" class="form-control" th:value="${id}" >
                     <input type="text" name="name" class="form-control" th:value="*{name}" placeholder="Họ và tên người được tiêm(*)" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                     <div class="validate"></div>
                 </div>
@@ -189,11 +190,14 @@
                     <label class="formlabel" >Mũi tiêm:</label>
                 </div>
                 <div class="col-md-9">
-                    <select name="vaccine_id" text="number" th:value="*{vaccine_id}"  class="form-control" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên.">
-                        <option th:each="vaccine : ${vaccinesList}" th:value="${vaccine.vaccine_id}" th:text="${vaccine.vaccine_name}"></option>
-                    </select>
+                   <!--<select name="vaccine_id" text="number" class="form-control" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên.">
+                       <option selected disabled th:value="${vaccine.vaccine_id}" th:text="${vaccine.vaccine_name}"></option>
+                    </select>-->
+                    <input type="hidden" name="vaccine_id"   class="form-control" th:value="${vaccine.vaccine_id}" data-rule="minlen:4"  >
+                    <input type="text" disabled name="vaccine_name"   class="form-control" th:value="${vaccine.vaccine_name}" data-rule="minlen:4"  >
                     <div class="validate"></div>
                 </div>
+
 
             </div>
             <div class="form-row">
@@ -205,15 +209,12 @@
                     <div class="validate"></div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="col-md-3">
-                    <label class="formlabel" >Giờ hẹn:</label>
-                </div>
+
                 <div class="col-md-9">
-                    <input type="text" name="time_zone" class="form-control" th:value="*{time_zone}" >
+                    <input type="hidden"  class="form-control" name="phone" th:value="*{user_id}" placeholder="Số điện thoại của bạn" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên." >
                     <div class="validate"></div>
                 </div>
-            </div>
+
 
             <div class="text-center"><button type="submit">Đăng kí thông tin tiêm chủng</button></div>
         </form>

@@ -25,10 +25,13 @@
 
    <span>Ngày tiêm: </span><span th:text="${appointment.date}"></span><br/>
 
-   <span>Giờ hẹn: </span><span th:text="${appointment.time_zone}"></span><br/>
+
 
    <span>Bạn đã thanh toán: </span><span th:text="${appointment.vaccine.price}"></span><br/>
 
-   <a href="/success" >Sổ tiêm của bạn</a>
+   <form th:action="/success">
+      <input type="hidden" name = "bill" value="${bill}">
+      <input type="submit" value ="Sổ tiêm của bạn">
+   </form>
 </body>
 </html>
