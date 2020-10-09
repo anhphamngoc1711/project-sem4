@@ -4,7 +4,21 @@
     <meta charset="UTF-8" />
     <title>Sổ tiêm của bạn</title>
 </head>
-<span>Bệnh nhân: </span><span th:text="${bill.appointment.name}"></span><br/>
+<div th:if ="${name != null}">
+    <span>Bệnh nhân: </span><span th:text="${name}"></span><br/>
+    <span>Ngày Sinh: </span><span th:text="${birthday}"></span><br/>
+    <span>Giới tính: </span><span th:text="${gender}"></span><br/>
+</div>
+<div th:if ="${appointmentList != null}">
+    <div th:each="appointment,iter : ${appointmentList}">
+        <span th:text="'Bệnh nhân số: ' + ${iter.index + 1}"></span><br/>
+        <span>Bệnh nhân: </span><span th:text="${appointment.name}"></span><br/>
+        <span>Ngày Sinh: </span><span th:text="${appointment.date_of_birth}"></span><br/>
+        <span>Giới tính: </span><span th:text="${appointment.gender == 1 ? 'Nam' : 'Nữ'}"></span><br/>
+    </div>
+
+</div>
+
 <!--<span>Ngày tiêm </span><span th:text="${bill.appointment.date}"></span><br/>-->
 <!--<span>Giờ tiêm: </span><span th:text="${bill.appointment.time_zone}"></span><br/>-->
 <!--<span>Bác sĩ tiêm: </span><span th:text="${doctors}"></span><br/>-->

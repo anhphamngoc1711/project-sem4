@@ -1,10 +1,13 @@
 package com.example.projectsem4.controller;
 
+import com.example.projectsem4.entity.Appointment;
 import com.example.projectsem4.entity.User;
+import com.example.projectsem4.repository.AppointmentRepository;
 import com.example.projectsem4.repository.UserRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +21,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    AppointmentRepository appointmentRepository;
 
     @RequestMapping("/")
     public String index() {
@@ -43,5 +48,16 @@ public class UserController {
             return "index";
         }
         return "fontend/login";
+    }
+    @RequestMapping("/sotiem")
+    public String soTiem(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("userLoginSuccess");
+        //check chưa login
+        if(user == null){
+            return "fontend/login";
+        }
+        List<Appointment> appointmentList = appointmentRepository.getAppointmentById(user.getId());
+        model.addAttribute("appointmentList",appointmentList);
+        return "success";
     }
 }

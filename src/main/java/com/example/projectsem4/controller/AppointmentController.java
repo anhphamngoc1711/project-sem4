@@ -6,6 +6,7 @@ import com.example.projectsem4.entity.User;
 import com.example.projectsem4.entity.Vaccine;
 import com.example.projectsem4.repository.AppointmentRepository;
 import com.example.projectsem4.repository.PlaceRepository;
+import com.example.projectsem4.repository.UserRepository;
 import com.example.projectsem4.repository.VaccineRepository;
 import com.example.projectsem4.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +39,9 @@ public class AppointmentController {
     @Autowired
     PlaceRepository placeRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     @GetMapping("/fontend/registration")
     public String registration(Model model, HttpSession session) {
@@ -47,6 +55,7 @@ public class AppointmentController {
         Vaccine vaccine = new Vaccine();
         if(numVaccine == 0){
             vaccine = vaccinesList.get(0);
+
         } else if(numVaccine == 1){
             vaccine = vaccinesList.get(1);
         }
@@ -68,10 +77,72 @@ public class AppointmentController {
         return "/admin/pages/addAppointments";
     }
     @PostMapping("/appointments/save")
-    public String registration( @ModelAttribute Appointment appointment, Model model)
+    public String registration( @ModelAttribute Appointment appointment, Model model, HttpSession session)
     {
-        model.addAttribute("appointment", appointment);
-        appointmentService.add(appointment);
+        User user = (User) session.getAttribute("userLoginSuccess");
+        if(user == null){
+            return "fontend/login";
+        }
+        //Lấy tất cả các appointment theo ngày hiện tại
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date).toString());
+        int soLanTiemNgayHienTai = appointmentRepository.getSoLanTiemTheoNgayHienTai(dateFormat.format(date).toString());
+        //Nếu mà lớn 100 thì báo lỗi
+        if(soLanTiemNgayHienTai > 100){
+            //chua tiem data =1, tiem 1 lan data =2
+            int numVaccine = user.getVaccinated();
+            //Check if vaccine  = 0, display 1
+            //Check if vaccine  = 1, display 2
+            List<Vaccine> vaccinesList = vaccineRepository.findAll();
+            Vaccine vaccine = new Vaccine();
+            if(numVaccine == 0){
+                vaccine = vaccinesList.get(0);
+            } else if(numVaccine == 1){
+                vaccine = vaccinesList.get(1);
+            }
+            model.addAttribute("appointment", new Appointment());
+            model.addAttribute("vaccine", vaccine);
+            model.addAttribute("placesList", placeRepository.findAll());
+            model.addAttribute("id", user.getId());
+            model.addAttribute("error","Ngày vượt quá số làn tiêm 100.");
+            return "/fontend/registration";
+        } else{
+            //Kiểm tra một user chỉ cho phép đang kí hai lần
+            int soUserId = appointmentRepository.getSoLanUser(user.getId());
+            if(soUserId >2){
+                // thông báo lỗi
+                //chua tiem data =1, tiem 1 lan data =2
+                int numVaccine = user.getVaccinated();
+                //Check if vaccine  = 0, display 1
+                //Check if vaccine  = 1, display 2
+                List<Vaccine> vaccinesList = vaccineRepository.findAll();
+                Vaccine vaccine = new Vaccine();
+                if(numVaccine == 0){
+                    vaccine = vaccinesList.get(0);
+                } else if(numVaccine == 1){
+                    vaccine = vaccinesList.get(1);
+                }
+                model.addAttribute("appointment", new Appointment());
+                model.addAttribute("vaccine", vaccine);
+                model.addAttribute("placesList", placeRepository.findAll());
+                model.addAttribute("id", user.getId());
+                model.addAttribute("error","Bạn "+ user.getUsername()+ " vượt quá số lần đăng kí.");
+                return "/fontend/registration";
+
+            }else {
+                // Đăng Kí appointment
+                model.addAttribute("appointment", appointment);
+                appointment.setDate_now(dateFormat.format(date).toString());
+                appointmentService.add(appointment);
+                if(user.getVaccinated() == 0){
+                    userRepository.updateVaccinated(1,user.getId());
+                }
+
+            }
+
+        }
+
         return "redirect:/payment/" + appointment.getAppointment_id();
     }
 

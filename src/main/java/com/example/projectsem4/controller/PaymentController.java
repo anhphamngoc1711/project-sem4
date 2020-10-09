@@ -94,6 +94,7 @@ public class PaymentController {
                 Optional<Appointment> appointment = appointmentRepository.findById(this.payid);
                 model.addAttribute("appointment", appointment.get());
                 Bill bill = new Bill();
+                bill.setAppointment(appointment.get());
                 bill.setAppointment_id(appointment.get().getAppointment_id());
                 bill.setAddress(appointment.get().getAddress());
                 bill.setGender(appointment.get().getGender());
@@ -111,9 +112,11 @@ public class PaymentController {
         }
         return "redirect:/";
     }
-    @PostMapping("/success")
-    public String paySuccess(Model model, @RequestParam Bill bill){
-        model.addAttribute("bill", bill);
+    @PostMapping("/pay/successbill")
+    public String paySuccess(Model model, @RequestParam String name, String birthday, String gender){
+        model.addAttribute("name", name);
+        model.addAttribute("birthday", birthday);
+        model.addAttribute("gender", gender);
         return "success";
     }
 

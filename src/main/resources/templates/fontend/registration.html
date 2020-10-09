@@ -62,6 +62,11 @@
             color: #3fbbc0;
             margin: 18px 0px 0px 80px ;
         }
+        .class_iputradio{
+            margin: 0px !important;
+            width: 18px !important;
+            height: 18px !important;
+        }
 
     </style>
 <body>
@@ -121,6 +126,9 @@
             <h2>ĐĂNG KÝ THÔNG TIN TIÊM VACXIN COVID-19</h2>
             <p>Việc đăng ký thông tin tiêm chủng nhằm giúp Quý Khách tiết kiệm thời gian khi làm thủ tục tại quầy lễ tân của Trung Tâm, không mang ý nghĩa đặt trước giữ mũi vắc xin.</p>
         </div>
+        <div th:if="${error != null}" class="section-title">
+            <span th:text="${error}" class="text-danger" style="text-align: center; border: 2px solid red; padding: 16px;"></span>
+        </div>
 
         <form method="post" role="form" th:action="@{/appointments/save}" th:object="${appointment}" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
 
@@ -147,13 +155,16 @@
                 <div class="col-md-3">
                     <label class="formlabel" >Giới tính:</label>
                 </div>
-                <div class="col-md-9">
-                    <select type="text" name="gender"  th:value="*{gender}" class="form-control" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên.">
-                        <option value="">Giới tính</option>
-                        <option>Nam</option>
-                        <option>Nữ</option>
-                    </select>
-                    <div class="validate"></div>
+                <div class="col-md-3">
+                    <label>Nam</label>
+                    <input class="class_iputradio" name = "gender" type="radio" value="1" checked/>
+                </div>
+                <div class="col-md-3">
+                    <label>Nữ</label>
+                    <input class="class_iputradio" name = "gender" type="radio" value="2" />
+                </div>
+                <div class="col-md-3">
+
                 </div>
             </div>
             <div class="form-row">

@@ -29,8 +29,10 @@
 
    <span>Bạn đã thanh toán: </span><span th:text="${appointment.vaccine.price}"></span><br/>
 
-   <form th:action="/success">
-      <input type="hidden" name = "bill" value="${bill}">
+   <form th:action="@{/pay/successbill}" method="post" >
+      <input type="hidden" name = "name" th:value="${bill.appointment.name}">
+      <input type="hidden" name = "birthday" th:value="${bill.appointment.date_of_birth}">
+      <input type="hidden" name = "gender" th:value="${bill.appointment.gender}">
       <input type="submit" value ="Sổ tiêm của bạn">
    </form>
 </body>

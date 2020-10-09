@@ -13,7 +13,7 @@
 
     <span>Ngày sinh: </span><span th:text="${appointment.date_of_birth}"></span><br/>
 
-    <span>Giới tính: </span><span th:text="${appointment.gender}"></span><br/>
+    <span>Giới tính: </span><span th:text="${appointment.gender == 1 ? 'Nam': 'Nữ'}"></span><br/>
 
     <span>Điện thoại: </span><span th:text="${appointment.phone}"></span><br/>
 

@@ -38,6 +38,37 @@ public class Appointment implements Source {
 
     private int user_id;
 
+
+    private String date_now;
+
+    public int getAppointment_id() {
+        return appointment_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getDate_now() {
+        return date_now;
+    }
+
+    public void setDate_now(String date_now) {
+        this.date_now = date_now;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false,insertable = false, updatable = false)
     private User user;
@@ -160,6 +191,7 @@ public class Appointment implements Source {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
+
 
 
     @Override
