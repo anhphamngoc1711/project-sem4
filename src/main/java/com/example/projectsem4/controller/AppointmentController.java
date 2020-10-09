@@ -2,6 +2,8 @@ package com.example.projectsem4.controller;
 
 import com.example.projectsem4.entity.Appointment;
 import com.example.projectsem4.entity.Place;
+import com.example.projectsem4.entity.User;
+import com.example.projectsem4.entity.Vaccine;
 import com.example.projectsem4.repository.AppointmentRepository;
 import com.example.projectsem4.repository.PlaceRepository;
 import com.example.projectsem4.repository.VaccineRepository;
@@ -12,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,13 +35,31 @@ public class AppointmentController {
     PlaceRepository placeRepository;
 
 
-//    @GetMapping("/fontend/registration.html")
-//    public String registration(Model model) {
-//        model.addAttribute("appointment", new Appointment());
-//        model.addAttribute("vaccinesList", vaccineRepository.findAll());
-//        model.addAttribute("placesList", placeRepository.findAll());
-//        return "/fontend/registration";
-//    }
+    @GetMapping("/fontend/registration")
+    public String registration(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("userLoginSuccess");
+        //chua tiem data =1, tiem 1 lan data =2
+        int numVaccine = user.getVaccinated();
+
+        //Check if vaccine  = 0, display 1
+        //Check if vaccine  = 1, display 2
+        List<Vaccine> vaccinesList = vaccineRepository.findAll();
+        Vaccine vaccine = new Vaccine();
+        if(numVaccine == 0){
+            vaccine = vaccinesList.get(0);
+        } else if(numVaccine == 1){
+            vaccine = vaccinesList.get(1);
+        }
+
+
+
+        model.addAttribute("appointment", new Appointment());
+        model.addAttribute("vaccine", vaccine);
+        model.addAttribute("placesList", placeRepository.findAll());
+        model.addAttribute("id", user.getId());
+        return "/fontend/registration";
+    }
+
     @GetMapping("/admin/pages/addAppointments")
     public String addAppointment(Model model) {
         model.addAttribute("appointment", new Appointment());
@@ -45,7 +67,7 @@ public class AppointmentController {
         model.addAttribute("placesList", placeRepository.findAll());
         return "/admin/pages/addAppointments";
     }
-    @PostMapping("/fontend/registration")
+    @PostMapping("/appointments/save")
     public String registration( @ModelAttribute Appointment appointment, Model model)
     {
         model.addAttribute("appointment", appointment);
@@ -67,7 +89,7 @@ public class AppointmentController {
 
     @RequestMapping(path = {"/appointments"}, method = {RequestMethod.POST})
     public String saveAppointment(Appointment appointment) {
- appointmentRepository.save(appointment);
+    appointmentRepository.save(appointment);
         return "redirect:/admin/pages/appointments.html";
     }
     @PostMapping("/appointments/update")

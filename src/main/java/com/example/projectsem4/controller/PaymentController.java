@@ -99,17 +99,22 @@ public class PaymentController {
                 bill.setGender(appointment.get().getGender());
                 bill.setDate_of_birth(appointment.get().getDate_of_birth());
                 bill.setPrice((float) appointment.get().getVaccine().getPrice());
-                bill.setTime_zone(appointment.get().getTime_zone());
                 bill.setPhone(appointment.get().getPhone());
                 bill.setDate(appointment.get().getDate());
                 bill.setVaccine_id(appointment.get().getVaccine_id());
-                billRepository.save(bill);
+                bill = billRepository.saveAndFlush(bill);
+                model.addAttribute("bill", bill);
                 return "patient_registration";
             }
         } catch (PayPalRESTException e) {
             log.error(e.getMessage());
         }
         return "redirect:/";
+    }
+    @PostMapping("/success")
+    public String paySuccess(Model model, @RequestParam Bill bill){
+        model.addAttribute("bill", bill);
+        return "success";
     }
 
 }

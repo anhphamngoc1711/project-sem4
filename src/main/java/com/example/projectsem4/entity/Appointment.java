@@ -30,11 +30,18 @@ public class Appointment implements Source {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_of_birth;
     private String address;
-    private String time_zone;
+
     private int vaccine_id;
     private String gender;
 
     private int place_id;
+
+    private int user_id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false,insertable = false, updatable = false)
+    private User user;
+
 
     @OneToMany(mappedBy = "appointment",cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -105,13 +112,6 @@ public class Appointment implements Source {
         this.address = address;
     }
 
-    public String getTime_zone() {
-        return time_zone;
-    }
-
-    public void setTime_zone(String time_zone) {
-        this.time_zone = time_zone;
-    }
 
     public int getPlace_id() {
         return place_id;
@@ -171,7 +171,6 @@ public class Appointment implements Source {
                 ", date=" + date +
                 ", date_of_birth=" + date_of_birth +
                 ", address='" + address + '\'' +
-                ", time_zone='" + time_zone + '\'' +
                 ", vaccine_id=" + vaccine_id +
                 ", gender='" + gender + '\'' +
                 ", billAppointment=" + billAppointment +

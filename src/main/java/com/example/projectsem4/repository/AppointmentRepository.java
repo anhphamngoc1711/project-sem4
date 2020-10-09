@@ -12,4 +12,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     @Modifying
     @Query("delete from Appointment e where e.appointment_id=:x")
     int deleteAppointment(@Param("x") int appointment_id);
+
+    //get appointment by id
+    @Query("SELECT a FROM Appointment a WHERE a.user_id = :user_id")
+    Appointment getAppointmentById(@Param("user_id") int user_id);
 }

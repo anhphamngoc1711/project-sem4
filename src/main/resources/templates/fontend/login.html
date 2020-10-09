@@ -54,7 +54,7 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="index.html">Trang chủ</a></li>
+                <li class="active"><a href="index">Trang chủ</a></li>
                 <li><a href="#about">Thông tin</a></li>
                 <li><a href="#departments">Phòng tránh</a></li>
                 <li><a href="#doctors">Bác sĩ</a></li>
@@ -64,7 +64,7 @@
         </nav>
         <!-- .nav-menu -->
 
-        <a href="fontend/registration.html" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng ký tiêm</span> </a>
+        <a href="fontend/registration" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng ký tiêm</span> </a>
 
     </div>
 </header>
@@ -79,18 +79,18 @@
             <h2>Đăng nhập</h2>
         </div>
 
-        <form role="form" class="php-email-form" >
+        <form th:action="@{/fontend/login}" method="post">
 
             <div class="form-group">
                 <label class="formlabel" >Tên tài khoản</label>
-                <input type="tel" class="form-control" name="Username" id="Username" placeholder="Tài khoản" data-rule="minlen:4" data-msg="Vui lòng nhập tên tài khoản.">
+                <input type="tel" class="form-control" name="username" id="Username" placeholder="Tài khoản" data-rule="minlen:4" data-msg="Vui lòng nhập tên tài khoản.">
                 <div class="validate"></div>
             </div>
 
 
             <div class="form-group">
                 <label class="formlabel" >Mật khẩu</label>
-                <input type="password" name="Password" class="form-control datepicker" id="Password" placeholder="Mật khẩu" data-rule="minlen:4" data-msg="Vui lòng nhập mật khẩu." >
+                <input type="password" name="password" class="form-control datepicker" id="Password" placeholder="Mật khẩu" data-rule="minlen:4" data-msg="Vui lòng nhập mật khẩu." >
                 <div class="validate"></div>
             </div>
 
@@ -98,7 +98,7 @@
                 <button type="submit">Đăng nhập</button>
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        Bạn chưa có tài khoản? <a href="signup.html" class="ml-2">Đăng kí</a>
+                        Bạn chưa có tài khoản? <a href="signup" class="ml-2">Đăng kí</a>
                     </div>
                     <!-- <div class="d-flex justify-content-center links">
                         <a href="#">Quên mật khẩu?</a>

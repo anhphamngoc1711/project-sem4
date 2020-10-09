@@ -24,10 +24,9 @@
     <span>Mũi tiêm: </span><span th:text="${appointment.vaccine_id}"></span><br/>
 
     <span>Ngày tiêm: </span><span th:text="${appointment.date}"></span><br/>
+    <span>Giá tiền </span><span  value="10" th:text="${appointment.vaccine.price}"></span><br/>
 
-    <span>Giờ hẹn: </span><span th:text="${appointment.time_zone}"></span><br/>
-
-    <span>Giá tiền</span><input name="price" th:value="${appointment.vaccine.price}" >
+    <input  type="hidden" name="price" th:value="${appointment.vaccine.price}" >
 
     <button type="submit"> Payment with Paypal </button>
 </form>

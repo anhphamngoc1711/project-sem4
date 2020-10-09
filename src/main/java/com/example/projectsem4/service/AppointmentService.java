@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Service
@@ -27,7 +28,12 @@ public class AppointmentService {
         }
         return null;
     }
-
+//    public Appointment checkAppointment(Appointment appointment,int id){
+//        Optional<Appointment> appointment1 = appointmentRepository.findById(id);
+//        if (appointment1.isPresent()){
+//
+//        }
+//    }
 
 }
 
