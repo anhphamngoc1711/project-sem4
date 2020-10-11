@@ -113,11 +113,16 @@ public class PaymentController {
         return "redirect:/";
     }
     @PostMapping("/pay/successbill")
-    public String paySuccess(Model model, @RequestParam String name, String birthday, String gender){
+    public String paySuccess(Model model, @RequestParam String name, String birthday, String gender
+    ){
         model.addAttribute("name", name);
         model.addAttribute("birthday", birthday);
         model.addAttribute("gender", gender);
         return "success";
+    }
+    @GetMapping("/success")
+    public String index(){
+        return "index";
     }
 
 }

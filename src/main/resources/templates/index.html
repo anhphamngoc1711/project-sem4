@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Medicio Bootstrap Template - Index</title>
+    <title>Covid-19</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">Đăng kí tiêm
 
@@ -77,31 +77,32 @@
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(assets/img/slide/slide4.jpg)">
+            <div class="carousel-item active" th:style="'background-image:url(' + @{/assets/img/slide/slide4.jpg} + ');'" >
                 <div class="container">
                     <h2>Hệ thống tiên vắc xin Covid-19 quốc gia</h2>
-                    <p>Ngoài yếu tố y khoa và chính trị, vắcxin COVID-19 còn là "mỏ vàng" về mặt kinh tế, trong bối cảnh cả nhân loại đang "khát" vắcxin để ngăn ngừa virus corona chủng mới quái ác, gây đại dịch COVID-19.</p>
-                    <a href="/registration" class="btn-get-started scrollto">Đăng Kí Tiêm</a>
+                    <p>Tiêm phòng Vắc xin Covid-19 là trách nhiệm của gia đình và toàn xã hội, là biện pháp hữu hiệu để đầy lùi dịch bệnh nguy hiểm này.</p>
+                    <a href="/fontend/registration" class="btn-get-started scrollto">Đăng Kí Tiêm ngay</a>
                 </div>
 
             </div>
 
             <!-- Slide 2 -->
-            <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+            <div class="carousel-item" th:style="'background-image:url(' + @{/assets/img/slide/slide-3.jpg} + ');'" >
                 <div class="container">
                     <h2>Hệ thống tiên vắc xin Covid-19 quốc gia</h2>
-                    <p>Ngoài yếu tố y khoa và chính trị, vắcxin COVID-19 còn là "mỏ vàng" về mặt kinh tế, trong bối cảnh cả nhân loại đang "khát" vắcxin để ngăn ngừa virus corona chủng mới quái ác, gây đại dịch COVID-19.</p>
-                    <a href="/registration.html" class="btn-get-started scrollto">Đăng Kí Tiêm</a>
+                    <p>Tiêm phòng Vắc xin Covid-19 là trách nhiệm của gia đình và toàn xã hội, là biện pháp hữu hiệu để đầy lùi dịch bệnh nguy hiểm này.</p>
+                    <a href="/fontend/registration"  class="btn-get-started scrollto">Đăng Kí Tiêm ngay</a>
                 </div>
+
             </div>
 
             <!-- Slide 3 -->
-            <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+            <div class="carousel-item" th:style="'background-image:url(' + @{/assets/img/slide/slide-2.jpg} + ');'" >
 
                 <div class="container">
                     <h2>Hệ thống tiên vắc xin Covid-19 quốc gia</h2>
-                    <p>Ngoài yếu tố y khoa và chính trị, vắcxin COVID-19 còn là "mỏ vàng" về mặt kinh tế, trong bối cảnh cả nhân loại đang "khát" vắcxin để ngăn ngừa virus corona chủng mới quái ác, gây đại dịch COVID-19.</p>
-                    <a href="fontend/registration.html" class="btn-get-started scrollto">Đăng Kí Tiêm</a>
+                    <p>Tiêm phòng Vắc xin Covid-19 là trách nhiệm của gia đình và toàn xã hội, là biện pháp hữu hiệu để đầy lùi dịch bệnh nguy hiểm này.</p>
+                    <a href="/fontend/registration" class="btn-get-started scrollto">Đăng Kí Tiêm ngay</a>
                 </div>
             </div>
 
@@ -542,7 +543,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form method="post" role="form" class="php-email-form">
                         <div class="form-row">
                             <div class="col form-group">
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Họ và tên quý khách" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />

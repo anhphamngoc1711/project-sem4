@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout= "http://ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>vacxin-covid19</title>
+    <title>Medicio Bootstrap Template - Index</title>
     <meta content="" name="descriptison">
-    <meta content="" name="keywords">
+    <meta content="" name="keywords">Đăng kí tiêm
 
     <!-- Favicons -->
-<!--    <link th:href="@{/assets/img/favicon.png}" rel="icon">-->
-<!--    <link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">-->
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
 
     <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/assets/vendor/icofont/icofont.min.css}" rel="stylesheet">
@@ -25,11 +23,10 @@
     <link th:href="@{/assets/vendor/aos/aos.css}" rel="stylesheet">
 
 
-    <!--    <link rel="stylesheet" th:src="@{/assets/css/style1.css}">-->
+    <link rel="stylesheet" th:src="@{/assets/css/style1.css}">
     <link th:href="@{/assets/css/style.css}" rel="stylesheet">
-    <link th:href="@{/assets/css/style1.css}" rel="stylesheet">
-
 </head>
+
 
 <body>
 
@@ -39,7 +36,7 @@
         <div class="d-flex align-items-center">
             <i class="icofont-clock-time"></i> Thứ Hai - Thứ Sáu ,Từ 8H đến 20H             </div>
         <div class="d-flex align-items-center">
-            <a href="fontend/login.html" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
+            <a href="login.html" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
         </div>
     </div>
 </div>
@@ -48,7 +45,7 @@
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-        <a href="../index.html" class="logo mr-auto"><img th:src="@{/assets/img/logo.png}" alt=""></a>
+        <a href="index" class="logo mr-auto"><img th:src="@{/assets/img/logo.png}" alt=""></a>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="logo mr-auto"><a href="index.html">Medicio</a></h1> -->
 
@@ -64,52 +61,104 @@
         </nav>
         <!-- .nav-menu -->
 
-        <a href="fontend/registration" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng ký tiêm</span> </a>
+        <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng ký tiêm</span> </a>
 
     </div>
 </header>
 <!-- End Header -->
-
-
-<!-- form login -->
-<section id="appointment" class="appointment section-bg">
-    <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-            <h2>Đăng nhập</h2>
+<section id="contact" class="contact">
+    <div class="container" >
+        <div class="section-title" style="margin-top: 100px">
+            <h2>SỔ Tiêm</h2>
         </div>
+    </div>
 
-        <form class="php-email-form" th:action="@{/fontend/login}" method="post">
+    <div class="container-fluid" style="background-color: #F7FCFC;">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-inverse" style="color: #444444; border-radius:4.5%; background-color: #65c9cd;padding: 30px 30px 30px 30px; margin: auto; width: 900px ;height: 450px; border-color: #333;">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9" >
+                                <h2 class="card-title">Họ và tên:</h2>
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        <label class="formlabel" >Ngày sinh:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span> Người được tiêm</span>
 
-            <div class="form-group">
-                <label class="formlabel" >Tên tài khoản</label>
-                <input type="tel" class="form-control" name="username" id="Username" placeholder="Tài khoản" data-rule="minlen:4" data-msg="Vui lòng nhập tên tài khoản.">
-                <div class="validate"></div>
-            </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        <label class="formlabel" >Giới tính:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span> Người được tiêm</span>
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        <label class="formlabel" >Số điện thoại:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span> Người được tiêm</span>
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        <label class="formlabel" >Địa chỉ thường trú:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span> Người được tiêm</span>
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        <label class="formlabel" >Địa điểm tiêm:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span> Người được tiêm</span>
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        <label class="formlabel" >Mũi tiêm:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span> Người được tiêm</span>
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        <label class="formlabel" >Ngày tiêm:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <span> Người được tiêm</span>
+
+                                    </div>
+                                </div>
 
 
-            <div class="form-group">
-                <label class="formlabel" >Mật khẩu</label>
-                <input type="password" name="password" class="form-control datepicker" id="Password" placeholder="Mật khẩu" data-rule="minlen:4" data-msg="Vui lòng nhập mật khẩu." >
-                <div class="validate"></div>
-            </div>
-
-            <div class="text-center">
-                <button type="submit">Đăng nhập</button>
-                <div class="mt-4">
-                    <div class="d-flex justify-content-center links">
-                        Bạn chưa có tài khoản? <a href="signup" class="ml-2">Đăng kí</a>
+                            </div>
+                            <div class="col-md-1 col-sm-1 text-center">
+                                <img class="btn-md" th:src="@{/assets/img/doctors/doctors-1.jpg}" alt="" style="width: 200px; height: 200px; border-radius:50%;">
+                            </div>
+                        </div>
                     </div>
-                    <!-- <div class="d-flex justify-content-center links">
-                        <a href="#">Quên mật khẩu?</a>
-                    </div> -->
                 </div>
             </div>
-        </form>
+        </div>
+    </div>
 
     </div>
 </section>
-
 <!-- ======= Footer ======= -->
 <footer id="footer">
     <div class="footer-top">
@@ -162,12 +211,10 @@
         </div>
     </div>
 </footer>
-<!-- End Footer --><!-- End Footer -->
+<!-- End Footer -->
 
 <div id="preloader"></div>
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
-<!-- Vendor JS Files -->
 <script th:src="@{/assets/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/assets/vendor/jquery.easing/jquery.easing.min.js}"></script>
@@ -180,6 +227,6 @@
 
 <script th:src="@{/assets/js/main.js}"></script>
 <script th:src="@{/assets/js/data.js}"></script>
-</body>
 
+</body>
 </html>
