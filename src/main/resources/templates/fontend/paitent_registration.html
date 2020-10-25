@@ -106,7 +106,7 @@
                     <label class="formlabel" >Giới tính:</label>
                 </div>
                 <div class="col-md-6">
-                    <span th:text="${appointment.gender}"></span>
+                    <span>Giới tính: </span><span th:text="${appointment.gender == 1 ? 'Nam' : 'Nữ'}"></span><br/>
 
                 </div>
             </div>
@@ -164,18 +164,17 @@
 
                 </div>
             </div>
-            <form th:action="@{/pay/successbill}" method="post" >
-                <input type="hidden" name = "name" th:value="${bill.appointment.name}">
-                <input type="hidden" name = "birthday" th:value="${bill.appointment.date_of_birth}">
-                <input type="hidden" name = "gender" th:value="${bill.appointment.gender}">
+        </form>
+        <form th:action="@{/pay/successbill}" method="post" >
+            <input type="hidden" name = "name" th:value="${bill.appointment.name}">
+            <input type="hidden" name = "birthday" th:value="${bill.appointment.date_of_birth}">
+            <input type="hidden" name = "gender" th:value="${bill.appointment.gender}">
 
             <div class="text-center"><button type="submit">Đi tới sổ tiêm</button></div>
         </form>
-    </div>
 
     </div>
 
-    </div>
 </section>
 <!-- ======= Footer ======= -->
 <footer id="footer">

@@ -19,9 +19,6 @@ public class Vaccination_recordController {
     @Autowired
     private Vaccination_recordRepository vaccination_recordRepository;
 
-
-
-
     @Autowired
     private BillRepository billRepository;
 
@@ -29,8 +26,6 @@ public class Vaccination_recordController {
     public void setVaccination_recordRepository(Vaccination_recordRepository vaccination_recordRepository) {
         this.vaccination_recordRepository = vaccination_recordRepository;
     }
-
-
 
     @RequestMapping(path = "/bills", method = RequestMethod.GET)
     public String getAllBills(Model model) {

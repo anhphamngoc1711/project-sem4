@@ -5,6 +5,7 @@ import com.example.projectsem4.config.PaypalPaymentMethod;
 import com.example.projectsem4.entity.Appointment;
 import com.example.projectsem4.entity.Bill;
 import com.example.projectsem4.entity.Place;
+import com.example.projectsem4.entity.Vaccination_record;
 import com.example.projectsem4.repository.AppointmentRepository;
 import com.example.projectsem4.repository.BillRepository;
 import com.example.projectsem4.repository.VaccineRepository;
@@ -118,12 +119,13 @@ public class PaymentController {
         model.addAttribute("name", name);
         model.addAttribute("birthday", birthday);
         model.addAttribute("gender", gender);
+        Vaccination_record vaccination_record = new Vaccination_record();
         return "success";
     }
-    @GetMapping("/success")
-    public String index(){
-        return "index";
-    }
+//    @GetMapping("/success")
+//    public String index(){
+//        return "index";
+//    }
 
 }
 

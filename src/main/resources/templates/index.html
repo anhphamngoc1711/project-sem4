@@ -34,9 +34,15 @@
 <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-            <i class="icofont-clock-time"></i> Thứ Hai - Thứ Sáu ,Từ 8H đến 20H             </div>
+            <i class="icofont-clock-time"></i> Thứ Hai - Thứ Sáu ,Từ 8H đến 20H
+        </div>
         <div class="d-flex align-items-center">
-            <a href="fontend/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
+            <div th:if="${session.userLoginSuccess == null}">
+                <a href="/fontend/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
+            </div>
+            <div th:if="${session.userLoginSuccess != null}">
+                <a href="/delete" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng xuất</span> </a>
+            </div>
         </div>
     </div>
 </div>
@@ -102,7 +108,7 @@
                 <div class="container">
                     <h2>Hệ thống tiên vắc xin Covid-19 quốc gia</h2>
                     <p>Tiêm phòng Vắc xin Covid-19 là trách nhiệm của gia đình và toàn xã hội, là biện pháp hữu hiệu để đầy lùi dịch bệnh nguy hiểm này.</p>
-                    <a href="/fontend/registration" class="btn-get-started scrollto">Đăng Kí Tiêm ngay</a>
+                    <a href="/registration" class="btn-get-started scrollto">Đăng Kí Tiêm ngay</a>
                 </div>
             </div>
 

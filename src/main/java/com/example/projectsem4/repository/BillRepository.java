@@ -6,7 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface BillRepository extends JpaRepository<Bill,Integer> {
+
 
 //    @Query("SELECT u FROM Bill u WHERE u.is_confirmed=false ")
 //    public Bill getBillByDoctor(@Param("doctor") String doctor);

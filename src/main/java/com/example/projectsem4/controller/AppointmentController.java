@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,26 +44,24 @@ public class AppointmentController {
     @Autowired
     UserRepository userRepository;
 
-
     @GetMapping("/fontend/registration")
     public String registration(Model model, HttpSession session) {
         User user = (User) session.getAttribute("userLoginSuccess");
+
+        if (user == null) {
+            return "fontend/login";
+        }
         //chua tiem data =1, tiem 1 lan data =2
         int numVaccine = user.getVaccinated();
-
         //Check if vaccine  = 0, display 1
         //Check if vaccine  = 1, display 2
         List<Vaccine> vaccinesList = vaccineRepository.findAll();
         Vaccine vaccine = new Vaccine();
         if(numVaccine == 0){
             vaccine = vaccinesList.get(0);
-
         } else if(numVaccine == 1){
             vaccine = vaccinesList.get(1);
         }
-
-
-
         model.addAttribute("appointment", new Appointment());
         model.addAttribute("vaccine", vaccine);
         model.addAttribute("placesList", placeRepository.findAll());
@@ -77,12 +77,16 @@ public class AppointmentController {
         return "/admin/pages/addAppointments";
     }
     @PostMapping("/appointments/save")
-    public String registration( @ModelAttribute Appointment appointment, Model model, HttpSession session)
+    public String registration(@Valid Appointment appointment1 , Errors errors, @ModelAttribute Appointment appointment, Model model, HttpSession session)
     {
         User user = (User) session.getAttribute("userLoginSuccess");
         if(user == null){
             return "fontend/login";
         }
+        if (null != errors && errors.getErrorCount() > 0 ) {
+            return "/fontend/registration";
+        }
+
         //Lấy tất cả các appointment theo ngày hiện tại
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -108,7 +112,7 @@ public class AppointmentController {
             model.addAttribute("error","Ngày vượt quá số làn tiêm 100.");
             return "/fontend/registration";
         } else{
-            //Kiểm tra một user chỉ cho phép đang kí hai lần
+            //Kiểm tra một user chỉ cho phép đăng kí hai lần
             int soUserId = appointmentRepository.getSoLanUser(user.getId());
             if(soUserId >2){
                 // thông báo lỗi
@@ -129,7 +133,6 @@ public class AppointmentController {
                 model.addAttribute("id", user.getId());
                 model.addAttribute("error","Bạn "+ user.getUsername()+ " vượt quá số lần đăng kí.");
                 return "/fontend/registration";
-
             }else {
                 // Đăng Kí appointment
                 model.addAttribute("appointment", appointment);
@@ -138,19 +141,10 @@ public class AppointmentController {
                 if(user.getVaccinated() == 0){
                     userRepository.updateVaccinated(1,user.getId());
                 }
-
             }
-
         }
-
         return "redirect:/payment/" + appointment.getAppointment_id();
     }
-
-
-//    @RequestMapping({"/admin/pages/appointments.html"})
-//    public String appointment() {
-//        return "admin/pages/appointments";
-//    }
 
     @RequestMapping(path = "/admin/pages/appointments.html", method = RequestMethod.GET)
     public String getAllAppointment(Model model) {

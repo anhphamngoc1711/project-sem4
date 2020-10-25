@@ -57,11 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers()
+                .antMatchers("/static/**","/templates/**","/test/**","/fontend/**","/admincss/**","/assets/**","/login","/index","/","/registration","/payment","/signup","/delete","/sotiem","/payment/{id}","/payment" )
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+                .formLogin()
+                .permitAll()
                 .and()
                 .logout().permitAll()
                 ;

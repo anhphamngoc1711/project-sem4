@@ -25,7 +25,7 @@ public class VaccineController {
         this.vaccineRepository = vaccineRepository;
     }
 
-    @RequestMapping(path = {"/admin/pages/addVaccine.html"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/admin/pages/addVaccine"}, method = {RequestMethod.GET})
     public String createVaccine(Model model) {
         model.addAttribute("vaccine", new Vaccine());
         return "/admin/pages/addVaccine";
@@ -34,10 +34,10 @@ public class VaccineController {
     @RequestMapping(path = {"/vaccines"}, method = {RequestMethod.POST})
     public String saveVaccine(Vaccine vaccine) {
         this.vaccineRepository.save(vaccine);
-        return "redirect:/admin/pages/vaccines.html";
+        return "redirect:/admin/pages/vaccines";
     }
 
-    @RequestMapping(path = {"/admin/pages/vaccines.html"}, method = {RequestMethod.GET})
+    @RequestMapping(path = {"/admin/pages/vaccines"}, method = {RequestMethod.GET})
     public String getAllVaccines(Model model) {
         model.addAttribute("vaccinesList", this.vaccineRepository.findAll());
         return "admin/pages/vaccines";
@@ -55,7 +55,7 @@ public class VaccineController {
         Optional<Vaccine> vaccine1 = this.vaccineRepository.findById(vaccine.getVaccine_id());
         if (vaccine1.isPresent()) {
             this.vaccineRepository.save(vaccine);
-            return "redirect:/admin/pages/vaccines.html";
+            return "redirect:/admin/pages/vaccines";
         } else {
             return "/";
         }
@@ -67,7 +67,7 @@ public class VaccineController {
         vaccine.ifPresent((value) -> {
             this.vaccineRepository.deleteVaccine(value.getVaccine_id());
         });
-        return "redirect:/admin/pages/vaccines.html";
+        return "redirect:/admin/pages/vaccines";
     }
 }
 

@@ -8,6 +8,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,17 +36,18 @@ public class UserController {
     }
 
     @RequestMapping("/index")
-    public String index(User user) {
+    public String index(User user,HttpSession session,Model model) {
+//        model.addAttribute("userLoginSuccess", session.getAttribute("userLoginSuccess"));
         return "index";
     }
 
     @PostMapping("/fontend/login")
     public String postLogin(@RequestParam String username, @RequestParam String password, HttpSession session){
-        User user = userRepository.checkUserLogin(username,password);
+         User user = userRepository.checkUserLogin(username,password);
         if(user != null){
             //Login success
             session.setAttribute("userLoginSuccess", user);
-            return "index";
+            return "redirect:/index";
         }
         return "fontend/login";
     }
@@ -59,5 +61,10 @@ public class UserController {
         List<Appointment> appointmentList = appointmentRepository.getAppointmentById(user.getId());
         model.addAttribute("appointmentList",appointmentList);
         return "success";
+    }
+    @GetMapping("/delete")
+    public String logout(HttpSession session){
+        session.removeAttribute("userLoginSuccess");
+        return "redirect:/fontend/login";
     }
 }

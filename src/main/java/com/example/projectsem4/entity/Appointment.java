@@ -7,6 +7,8 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,20 +20,35 @@ public class Appointment implements Source {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int appointment_id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private int phone;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern="yyyy-MM-dd")
+    @NotBlank(message = "Vui lòng chọn ngày tiêm")
     private Date date;
 
     @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotBlank(message = "Vui lòng nhập ngày sinh")
     private Date date_of_birth;
+
+
+    @NotNull
+    @NotBlank(message = "Vui lòng nhập địa chỉ")
     private String address;
 
+
     private int vaccine_id;
+
+    @NotNull
     private String gender;
 
     private int place_id;
