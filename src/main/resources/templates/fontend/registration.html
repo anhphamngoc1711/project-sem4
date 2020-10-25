@@ -131,7 +131,7 @@
                     <label class="formlabel" >Ngày sinh:</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="date" class="form-control" name="date_of_birth" th:value="*{date_of_birth}" placeholder="Nhập ngày sinh">
+                    <input type="date" class="form-control"  required autofocus="autofocus" name="date_of_birth" th:value="*{date_of_birth}" placeholder="Nhập ngày sinh">
                     <div class="validate"></div>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                     <label class="formlabel" >Điện thoại:</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="phone" th:value="*{phone}" placeholder="Số điện thoại của bạn" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên." >
+                    <input type="text" class="form-control" required autofocus="autofocus" name="phone" th:value="*{phone}" placeholder="Số điện thoại của bạn" data-rule="minlen:4" data-msg="vui lòng nhập họ và tên." >
                     <div class="validate"></div>
                 </div>
             </div>
@@ -165,7 +165,7 @@
                     <label class="formlabel" >Địa chỉ thường trú:</label>
                 </div>
                 <div class="col-md-9">
-                    <input type="text" name="address" class="form-control datepicker" th:value="*{address}" placeholder="Nhập địa chỉ">
+                    <input type="text" name="address"  required autofocus="autofocus" class="form-control datepicker" th:value="*{address}" placeholder="Nhập địa chỉ">
                     <div class="validate"></div>
                 </div>
             </div>
