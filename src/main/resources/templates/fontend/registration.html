@@ -74,13 +74,19 @@
 <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-            <i class="icofont-clock-time"></i> Monday - Saturday, 8AM to 10PM
+            <i class="icofont-clock-time"></i> Thứ Hai - Thứ Sáu ,Từ 8H đến 20H
         </div>
         <div class="d-flex align-items-center">
-            <a href="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng kí</span> </a>
+            <div th:if="${session.userLoginSuccess == null}">
+                <a href="/fontend/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
+            </div>
+            <div th:if="${session.userLoginSuccess != null}">
+                <a href="/delete" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng xuất</span> </a>
+            </div>
         </div>
     </div>
 </div>
+
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
