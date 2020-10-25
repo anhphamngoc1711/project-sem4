@@ -1,13 +1,273 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8" />
-    <title>Sổ tiêm của bạn</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Covid-19</title>
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
 </head>
-<span>Bệnh nhân: </span><span th:text="${bill.appointment.name}"></span><br/>
-<!--<span>Ngày tiêm </span><span th:text="${bill.appointment.date}"></span><br/>-->
-<!--<span>Giờ tiêm: </span><span th:text="${bill.appointment.time_zone}"></span><br/>-->
-<!--<span>Bác sĩ tiêm: </span><span th:text="${doctors}"></span><br/>-->
+
 <body>
+
+<!-- ======= Top Bar ======= -->
+<div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <i class="icofont-clock-time"></i> Thứ Hai - Thứ Sáu ,Từ 8H đến 20H             </div>
+        <div class="d-flex align-items-center">
+            <a href="login.html" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
+        </div>
+    </div>
+</div>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+        <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <h1 class="logo mr-auto"><a href="index.html">Medicio</a></h1> -->
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="index.html">Trang chủ</a></li>
+                <li><a href="#about">Thông tin</a></li>
+                <li><a href="#departments">Phòng tránh</a></li>
+                <li><a href="#doctors">Bác sĩ</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+
+            </ul>
+        </nav>
+        <!-- .nav-menu -->
+
+        <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng ký tiêm</span> </a>
+
+    </div>
+</header>
+<!-- End Header -->
+<section id="contact" class="contact">
+    <div class="container" >
+        <div class="section-title" style="margin-top: 100px">
+            <h2>SỔ Tiêm</h2>
+            <div th:if ="${name != null}">
+                <span>Bệnh nhân: </span><span th:text="${name}"></span><br/>
+                <span>Ngày Sinh: </span><span th:text="${birthday}"></span><br/>
+                <span>Giới tính: </span><span th:text="${gender}"></span><br/>
+            </div>
+            <div th:each="appointment,iter : ${appointmentList}">
+                <span th:text="'Bệnh nhân số: ' + ${iter.index + 1}"></span><br/>
+                <span>Bệnh nhân: </span><span th:text="${appointment.name}"></span><br/>
+                <span>Ngày Sinh: </span><span th:text="${appointment.date_of_birth}"></span><br/>
+                <span>Giới tính: </span><span th:text="${appointment.gender == '1' ? 'Nam' : 'Nữ'}"></span><br/>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="container-fluid" style="background-color: #F7FCFC;">-->
+<!--        <div class="row">-->
+<!--            <div class="col-12">-->
+<!--                <div class="card card-inverse" style="color: #444444; border-radius:4.5%; background-color: #65c9cd;padding: 30px 30px 30px 30px; margin: auto; width: 900px ;height: 450px; border-color: #333;">-->
+<!--                    <div class="card-block">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-9 col-sm-9" >-->
+<!--                                <h2 class="card-title">Họ và tên:</h2>-->
+<!--                                <div class="form-row">-->
+<!--                                    <div class="col-md-5">-->
+<!--                                        <label class="formlabel" >Ngày sinh:</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7">-->
+<!--                                        <span> Người được tiêm</span>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-row">-->
+<!--                                    <div class="col-md-5">-->
+<!--                                        <label class="formlabel" >Giới tính:</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7">-->
+<!--                                        <span> Người được tiêm</span>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-row">-->
+<!--                                    <div class="col-md-5">-->
+<!--                                        <label class="formlabel" >Số điện thoại:</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7">-->
+<!--                                        <span> Người được tiêm</span>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-row">-->
+<!--                                    <div class="col-md-5">-->
+<!--                                        <label class="formlabel" >Địa chỉ thường trú:</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7">-->
+<!--                                        <span> Người được tiêm</span>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-row">-->
+<!--                                    <div class="col-md-5">-->
+<!--                                        <label class="formlabel" >Địa điểm tiêm:</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7">-->
+<!--                                        <span> Người được tiêm</span>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-row">-->
+<!--                                    <div class="col-md-5">-->
+<!--                                        <label class="formlabel" >Mũi tiêm:</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7">-->
+<!--                                        <span> Người được tiêm</span>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-row">-->
+<!--                                    <div class="col-md-5">-->
+<!--                                        <label class="formlabel" >Ngày tiêm:</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-7">-->
+<!--                                        <span> Người được tiêm</span>-->
+
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
+<!--                            </div>-->
+                            <div class="col-md-1 col-sm-1 text-center">
+                                <img class="btn-md" src="assets/img/thongdiep/user.jpg" alt="" style="width: 200px; height: 200px; border-radius:50%;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+</section>
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-info">
+                        <h3>COVID-19</h3>
+                        <p>
+                            Số 8 Đường Tôn Thất Thuyết <br> Mỹ Đình 2, Từ Liêm, Hà Nội, Việt Nam<br><br>
+                            <strong>Số điện thoại:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> covid_19@gmail.com<br>
+                        </p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Liên kết</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Trang chủ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Liên hệ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Dịch vụ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Điều khoản dịch vụ</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <h4>Bản tin của chúng tôi</h4>
+                    <form action="" method="post">
+                        <input type="email" name="email"><input type="submit" value="Đăng ký">
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Covid-19</span></strong>. All Rights Reserved
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+<script src="assets/vendor/counterup/counterup.min.js"></script>
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="assets/vendor/venobox/venobox.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
 </body>
+
 </html>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Sổ tiêm của bạn</title>-->
+<!--</head>-->
+<!--<div th:if ="${name != null}">-->
+<!--    <span>Bệnh nhân: </span><span th:text="${name}"></span><br/>-->
+<!--    <span>Ngày Sinh: </span><span th:text="${birthday}"></span><br/>-->
+<!--    <span>Giới tính: </span><span th:text="${gender}"></span><br/>-->
+<!--</div>-->
+<!--<div th:if ="${appointmentList != null}">-->
+<!--    <div th:each="appointment,iter : ${appointmentList}">-->
+<!--        <span th:text="'Bệnh nhân số: ' + ${iter.index + 1}"></span><br/>-->
+<!--        <span>Bệnh nhân: </span><span th:text="${appointment.name}"></span><br/>-->
+<!--        <span>Ngày Sinh: </span><span th:text="${appointment.date_of_birth}"></span><br/>-->
+<!--        <span>Giới tính: </span><span th:text="${appointment.gender == '1' ? 'Nam' : 'Nữ'}"></span><br/>-->
+<!--    </div>-->
+<!-- <button><a href="/index">Trang chủ</a><button/>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;<span>Ngày tiêm </span><span th:text="${bill.appointment.date}"></span><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;<span>Giờ tiêm: </span><span th:text="${bill.appointment.time_zone}"></span><br/>&ndash;&gt;-->
+<!--&lt;!&ndash;<span>Bác sĩ tiêm: </span><span th:text="${doctors}"></span><br/>&ndash;&gt;-->
+<!--<body>-->
+<!--</body>-->
+<!--</html>-->

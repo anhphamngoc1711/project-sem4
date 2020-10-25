@@ -5,8 +5,12 @@ import com.example.projectsem4.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserRegistrationController {
@@ -32,9 +36,13 @@ public class UserRegistrationController {
     }
 
     @RequestMapping(value = "/fontend/signup", method = RequestMethod.POST)
-    public String saveUser(User user) {
-        userRepository.save(user);
+    public String saveUser(@Valid User user, Errors errors) {
+        if (null != errors && errors.getErrorCount() > 0) {
+            return "fontend/signup";
+        } else {
+            userRepository.save(user);
 
-        return "redirect:/fontend/signup?success";
+            return "redirect:/fontend/signup?success";
+        }
     }
 }

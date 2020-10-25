@@ -40,7 +40,7 @@
         <div class="d-flex align-items-center">
             <i class="icofont-clock-time"></i> Thứ Hai - Thứ Sáu ,Từ 8H đến 20H             </div>
         <div class="d-flex align-items-center">
-            <a href="fontend/login.html" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
+            <a href="fontend/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng nhập/Đăng ký</span> </a>
         </div>
     </div>
 </div>
@@ -55,7 +55,7 @@
 
         <nav class="nav-menu d-none d-lg-block">
             <ul>
-                <li class="active"><a href="index.html">Trang chủ</a></li>
+                <li class="active"><a href="index">Trang chủ</a></li>
                 <li><a href="#about">Thông tin</a></li>
                 <li><a href="#departments">Phòng tránh</a></li>
                 <li><a href="#doctors">Bác sĩ</a></li>
@@ -65,7 +65,7 @@
         </nav>
         <!-- .nav-menu -->
 
-        <a href="fontend/registration.html" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng ký tiêm</span> </a>
+        <a href="fontend/registration" class="appointment-btn scrollto"><span class="d-none d-md-inline">Đăng ký tiêm</span> </a>
 
     </div>
 </header>
@@ -76,14 +76,13 @@
     <div class="container" data-aos="fade-up">
 
         <div th:if="${param.success}">
-            <div class="alert alert-info">You've successfully registered
-                to our awesome app!</div>
+            <div class="alert alert-info">Bạn đã đăng kí thành công vui lòng đăng nhập.</div>
         </div>
 
         <div class="section-title">
             <h2>Đăng kí</h2>
         </div>
-        <form action="#" th:action="@{/fontend/signup}" th:object="${user}" method="post">
+        <form class="php-email-form" action="#" th:action="@{/fontend/signup}" th:object="${user}" method="post">
 
 
 <!--            <div class="form-group">-->
@@ -99,16 +98,22 @@
 <!--            </div>-->
 
             <div class="form-group">
-                <label class="control-label" for="email"> Username </label> <input
-                    id="email" class="form-control" th:field="*{username}" required
-                    autofocus="autofocus" />
+                <label class="control-label" for="email"> Tên tài khoản </label>
+                <input id="username" class="form-control" th:field="*{username}" required autofocus="autofocus" />
+                <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
             </div>
 
             <div class="form-group">
-                <label class="control-label" for="password"> Password </label> <input
+                <label class="control-label" for="password"> Mật khẩu </label> <input
                     id="password" class="form-control" type="password"
                     th:field="*{password}" required autofocus="autofocus" />
             </div>
+            <div class="form-group">
+                <label class="control-label" for="password"> Nhập lại mật khẩu </label> <input
+                    id="password" class="form-control" type="password"
+                     required autofocus="autofocus" />
+            </div>
+
 
             <div class="text-center">
                 <button   type="submit">Đăng kí</button>

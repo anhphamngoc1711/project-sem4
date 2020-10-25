@@ -5,6 +5,7 @@ import com.example.projectsem4.config.PaypalPaymentMethod;
 import com.example.projectsem4.entity.Appointment;
 import com.example.projectsem4.entity.Bill;
 import com.example.projectsem4.entity.Place;
+import com.example.projectsem4.entity.Vaccination_record;
 import com.example.projectsem4.repository.AppointmentRepository;
 import com.example.projectsem4.repository.BillRepository;
 import com.example.projectsem4.repository.VaccineRepository;
@@ -94,6 +95,7 @@ public class PaymentController {
                 Optional<Appointment> appointment = appointmentRepository.findById(this.payid);
                 model.addAttribute("appointment", appointment.get());
                 Bill bill = new Bill();
+                bill.setAppointment(appointment.get());
                 bill.setAppointment_id(appointment.get().getAppointment_id());
                 bill.setAddress(appointment.get().getAddress());
                 bill.setGender(appointment.get().getGender());
@@ -111,11 +113,19 @@ public class PaymentController {
         }
         return "redirect:/";
     }
-    @PostMapping("/success")
-    public String paySuccess(Model model, @RequestParam Bill bill){
-        model.addAttribute("bill", bill);
+    @PostMapping("/pay/successbill")
+    public String paySuccess(Model model, @RequestParam String name, String birthday, String gender
+    ){
+        model.addAttribute("name", name);
+        model.addAttribute("birthday", birthday);
+        model.addAttribute("gender", gender);
+        Vaccination_record vaccination_record = new Vaccination_record();
         return "success";
     }
+//    @GetMapping("/success")
+//    public String index(){
+//        return "index";
+//    }
 
 }
 

@@ -9,6 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -17,11 +21,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull(message = "Vui lòng nhập tên!!")
+    @NotEmpty(message = "Vui lòng nhập tên!!")
+    @Size(min =2 ,max =12)
     @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
+    @NotNull
+    @Column(name = "password",nullable = false)
     private String password;
+
 
     @Column(name = "enable")
     public boolean enabled;
